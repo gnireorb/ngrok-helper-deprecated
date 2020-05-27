@@ -5,4 +5,9 @@
 - download testing software at the releases tab;
 - put both of them at a folder and run testing.exe;
 
+### about the project
+- this is not a project
+- and this sucks
+
+
 
