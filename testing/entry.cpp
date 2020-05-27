@@ -9,6 +9,12 @@ i can't run through memory so it sucks.
 a lot of bad code practices
 */
 
+/*
+todo:
+make a header to put the fuctions
+this code is aids
+*/
+
 bool create_file( const char* name );
 bool write_to_file( const char* name, int choice );
 int region_selector( );
