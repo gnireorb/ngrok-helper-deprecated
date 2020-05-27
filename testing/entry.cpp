@@ -9,86 +9,137 @@ i can't run through memory so it sucks.
 a lot of bad code practices
 */
 
+bool create_file( const char* name );
+bool write_to_file( const char* name, int choice );
+int region_selector( );
+bool authtoken( );
+bool tunnel( const char* file_name );
+
 bool main( )
 {
-	int choice; 
-	const char* execute;
-	std::string authtoken;
-	std::string port;
-	std::ifstream file( "settings.ini" );
+	/* variables */
+	const char* file_name = "settings.ini";
+	int region = 0;
 
-	SetConsoleTitle( ( "a software that uses ngrok as base" ) );
-	std::cout << ( "welcome, my sir" ) << std::endl;
-	std::cout << ( "big thanks to ngrok.com" ) << std::endl;
-	std::cout << ( "CTRL + C to close the ngrok application" ) << std::endl << std::endl;
+	/* file section */
+	std::ifstream file( file_name );
 
-	/* wtf is this code */
 	/* can be improved, checking ngrok.yml file */
 	if ( !file.good( ) )
 	{
-		/* create the suspicious file */
-		std::ofstream file( "settings.ini", std::ios::out | std::ios::trunc );
-		file.close( );
-
 		std::cout << ( "seems like it's your first time using this software.." ) << std::endl << std::endl;
 
-		std::cout << ( "please select your region:" ) << std::endl << std::endl;
-		std::cout << ( "[0] south america" ) << std::endl;
-		std::cout << ( "[1] north america" ) << std::endl;
-		std::cout << ( "[2] europe" ) << std::endl;
-		std::cout << ( "[3] asia" ) << std::endl;
-		std::cout << ( "[4] australia" ) << std::endl;
-		std::cout << ( "[5] japan" ) << std::endl;
-		std::cout << ( "[6] india" ) << std::endl;
-
-		std::cout << ( "> " );
-		std::cin >> choice;
-		std::cout << std::endl;
-
-		if ( choice > 6 || choice < 0 )
+		if ( !create_file( file_name ) )
 			return false;
 
-		file.open( "settings.ini", std::ios::in );
+		region = region_selector( );
 
-		if ( !file.is_open( ) )
+		if ( !write_to_file( file_name, region ) )
 			return false;
 
-		file << choice;
-
-		file.close( );
-
-		std::cout << ( "enter your authtoken:" ) << std::endl;
-		std::cout << ( "> " );
-		std::cin >> authtoken;
-		std::cout << std::endl;
-
-		if ( !authtoken.empty( ) )
-		{
-			authtoken = "ngrok authtoken " + authtoken;
-			const char* execute = authtoken.c_str( );
-			std::system( execute );
-			std::cout << std::endl;
-		}
+		if ( !authtoken( ) )
+			return false;
 	}
 
-	/* std::cin lul */
+	file.close( );
+
+	tunnel( file_name );
+
+	std::cout << ( "now you can press END to fully close the application" ) << std::endl;
+
+	while ( !GetAsyncKeyState( VK_END ) )
+		std::this_thread::sleep_for( std::chrono::nanoseconds( 5000 ) );
+}
+
+bool create_file( const char* file_name )
+{
+	std::ofstream file( file_name, std::ios::out | std::ios::trunc );
+	file.close( );
+	return file.good( );
+}
+
+bool write_to_file( const char* file_name, int choice )
+{
+	std::ofstream file( file_name, std::ios::out | std::ios::trunc );
+	std::string str = std::to_string( choice );
+	file << str;
+	file.close( );
+
+	return true;
+}
+
+int region_selector( )
+{
+	int region;
+	std::cout << ( "please select your region:" ) << std::endl << std::endl;
+	std::cout << ( "[0] south america" ) << std::endl << "[1] north america" << std::endl << "[2] europe" << std::endl;
+	std::cout << ( "> " );
+	std::cin >> region;
+	std::cout << std::endl;
+
+	if ( region > 6 || region < 0 )
+		return false;
+
+	return region;
+}
+
+bool authtoken( )
+{
+	std::string authtoken;
+
+	std::cout << ( "enter your authtoken:" ) << std::endl;
+	std::cout << ( "> " );
+	std::cin >> authtoken;
+	std::cout << std::endl;
+
+	if ( !authtoken.empty( ) && authtoken.length( ) < 50 )
+	{
+		authtoken = "ngrok authtoken " + authtoken;
+		const char* execute = authtoken.c_str( );
+		std::system( execute );
+		std::cout << std::endl;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool tunnel( const char* file_name )
+{
+	/* wtf */
+	int region;
+	std::string strregion;
+	std::string port;
+	const char* execute;
+
 	std::cout << ( "enter the port that you want to open" ) << std::endl;
 	std::cout << ( "> " );
 	std::cin >> port;
 	std::cout << std::endl;
 
-	file.open( "settings.ini", std::ios::in );
+	/* ifstream is for read-only */
+	std::ifstream file;
+	file.open( file_name, std::ios::in );
 	if ( !file.is_open( ) )
 		return false;
 	std::string strchoice;
 	std::getline( file, strchoice, '\n' );
 	file.close( );
-	choice = std::stoi( strchoice );
+	try
+	{
+		region = std::stoi( strchoice );
+	}
+	catch ( const std::exception& )
+	{
+		MessageBox( NULL, L"please delete your settings.ini", L"error", MB_OK | MB_ICONWARNING );
+	}
 
-	if ( choice > 6 || choice < 0 )
+	if ( region > 6 || region < 0 )
 		return false;
 
-	switch ( choice )
+	switch ( region )
 	{
 	case 0:
 		port = "ngrok tcp " + port + " --region sa";
@@ -105,30 +156,7 @@ bool main( )
 		execute = port.c_str( );
 		std::system( execute );
 		break;
-	case 3:
-		port = "ngrok tcp " + port + " --region ap";
-		execute = port.c_str( );
-		std::system( execute );
-		break;
-	case 4:
-		port = "ngrok tcp " + port + " --region au";
-		execute = port.c_str( );
-		std::system( execute );
-		break;
-	case 5:
-		port = "ngrok tcp " + port + " --region jp";
-		execute = port.c_str( );
-		std::system( execute );
-		break;
-	case 6:
-		port = "ngrok tcp " + port + " --region in";
-		execute = port.c_str( );
-		std::system( execute );
-		break;
 	}
 
-	std::cout << ( "now you can press END to fully close the application" ) << std::endl;
-
-	while ( !GetAsyncKeyState( VK_END ) )
-		std::this_thread::sleep_for( std::chrono::nanoseconds( 5000 ) );
+	return true;
 }
