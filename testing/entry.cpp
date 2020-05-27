@@ -133,7 +133,7 @@ bool tunnel( const char* file_name )
 	}
 	catch ( const std::exception& )
 	{
-		MessageBox( NULL, L"please delete your settings.ini", L"error", MB_OK | MB_ICONWARNING );
+		MessageBox( NULL, "please delete your settings.ini", "error", MB_OK | MB_ICONWARNING );
 	}
 
 	if ( region > 6 || region < 0 )
