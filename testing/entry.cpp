@@ -17,7 +17,7 @@ bool main( )
 	SetConsoleTitle( ( "a software that uses ngrok as base" ) );
 	std::cout << ( "welcome, my sir" ) << std::endl;
 	std::cout << ( "big thanks to ngrok.com" ) << std::endl << std::endl;
-	std::cout << ( "CTRL + C to close the ngrok application" ) << std::endl;
+	std::cout << ( "CTRL + C to close the ngrok application" ) << std::endl << std::endl;
 
 	/* wtf is this code */
 	/* can be improved, checking ngrok.yml file */
