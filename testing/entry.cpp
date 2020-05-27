@@ -35,8 +35,8 @@ bool main( )
 		std::cout << ( "please select your region:" ) << std::endl << std::endl;
 		std::cout << ( "[0] south america" ) << std::endl;
 		std::cout << ( "[1] north america" ) << std::endl;
-		std::cout << ( "[2] asia" ) << std::endl;
-		std::cout << ( "[3] europe" ) << std::endl;
+		std::cout << ( "[2] europe" ) << std::endl;
+		std::cout << ( "[3] asia" ) << std::endl;
 		std::cout << ( "[4] australia" ) << std::endl;
 		std::cout << ( "[5] japan" ) << std::endl;
 		std::cout << ( "[6] india" ) << std::endl;
@@ -101,12 +101,12 @@ bool main( )
 		std::system( execute );
 		break;
 	case 2:
-		port = "ngrok tcp " + port + " --region ap";
+		port = "ngrok tcp " + port + " --region eu";
 		execute = port.c_str( );
 		std::system( execute );
 		break;
 	case 3:
-		port = "ngrok tcp " + port + " --region eu";
+		port = "ngrok tcp " + port + " --region ap";
 		execute = port.c_str( );
 		std::system( execute );
 		break;
