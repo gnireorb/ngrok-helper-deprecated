@@ -5,12 +5,13 @@
 #include <string>
 
 /*
-I can't run through memory so it sucks.
+i can't run through memory so it sucks.
+a lot of bad code practices
 */
 
 bool main( )
 {
-	int choice = 1;
+	int choice; 
 	const char* execute;
 	std::string authtoken;
 	std::string port;
@@ -34,8 +35,8 @@ bool main( )
 		std::cout << ( "please select your region:" ) << std::endl << std::endl;
 		std::cout << ( "[0] south america" ) << std::endl;
 		std::cout << ( "[1] north america" ) << std::endl;
-		std::cout << ( "[2] europe" ) << std::endl;
-		std::cout << ( "[3] asia" ) << std::endl;
+		std::cout << ( "[2] asia" ) << std::endl;
+		std::cout << ( "[3] europe" ) << std::endl;
 		std::cout << ( "[4] australia" ) << std::endl;
 		std::cout << ( "[5] japan" ) << std::endl;
 		std::cout << ( "[6] india" ) << std::endl;
@@ -76,6 +77,17 @@ bool main( )
 	std::cin >> port;
 	std::cout << std::endl;
 
+	file.open( "settings.ini", std::ios::in );
+	if ( !file.is_open( ) )
+		return false;
+	std::string strchoice;
+	std::getline( file, strchoice, '\n' );
+	file.close( );
+	choice = std::stoi( strchoice );
+
+	if ( choice > 6 || choice < 0 )
+		return false;
+
 	switch ( choice )
 	{
 	case 0:
@@ -89,12 +101,12 @@ bool main( )
 		std::system( execute );
 		break;
 	case 2:
-		port = "ngrok tcp " + port + " --region eu";
+		port = "ngrok tcp " + port + " --region ap";
 		execute = port.c_str( );
 		std::system( execute );
 		break;
 	case 3:
-		port = "ngrok tcp " + port + " --region ap";
+		port = "ngrok tcp " + port + " --region eu";
 		execute = port.c_str( );
 		std::system( execute );
 		break;
