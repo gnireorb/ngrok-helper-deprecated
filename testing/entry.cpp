@@ -10,7 +10,7 @@ I can't run through memory so it sucks.
 
 bool main( )
 {
-	int choice;
+	int choice = 1;
 	const char* execute;
 	std::string authtoken;
 	std::string port;
@@ -54,6 +54,8 @@ bool main( )
 
 		file << choice;
 
+		file.close( );
+
 		std::cout << ( "enter your authtoken:" ) << std::endl;
 		std::cout << ( "> " );
 		std::cin >> authtoken;
@@ -70,7 +72,7 @@ bool main( )
 
 	/* std::cin lul */
 	std::cout << ( "enter the port that you want to open" ) << std::endl;
-	std::cout << ("> ");
+	std::cout << ( "> " );
 	std::cin >> port;
 	std::cout << std::endl;
 
