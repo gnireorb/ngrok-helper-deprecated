@@ -30,6 +30,12 @@ bool main( )
 	/* file section */
 	std::ifstream file( file_name );
 
+	/* ignore */
+	SetConsoleTitle( ( "a software that uses ngrok as base" ) );
+	std::cout << ( "welcome ithin?" ) << std::endl;
+	std::cout << ( "big thanks to ngrok.com" ) << std::endl;
+	std::cout << ( "CTRL + C to close the ngrok application" ) << std::endl << std::endl;
+
 	/* can be improved, checking ngrok.yml file */
 	if ( !file.good( ) )
 	{
