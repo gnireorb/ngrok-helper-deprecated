@@ -13,7 +13,7 @@ bool main( )
 	
 	tunnel( file_name );
 
-	std::cout << ( "now you can press END to fully close the application" ) << std::endl;
+	std::cout << ( "feche a aplicação usando o botão END do teclado" ) << std::endl;
 
 	while ( !GetAsyncKeyState( VK_END ) )
 		std::this_thread::sleep_for( std::chrono::nanoseconds( 5000 ) );
