@@ -109,7 +109,7 @@ int region_selector( )
 {
 	int region;
 	std::cout << ( "selecione sua região favorita:" ) << std::endl << std::endl;
-	std::cout << ( "[0] americado do sul" ) << std::endl << "[1] america do norte" << std::endl << "[2] europa" << std::endl;
+	std::cout << ( "[0] america do sul" ) << std::endl << "[1] america do norte" << std::endl << "[2] europa" << std::endl;
 	std::cout << ( "> " );
 	std::cin >> region;
 	std::cout << std::endl;
