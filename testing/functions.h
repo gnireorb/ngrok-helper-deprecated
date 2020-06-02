@@ -35,7 +35,7 @@ bool first_time( const char* file_name, int region )
 #endif
 	if ( !file_exists )
 	{
-		std::cout << ( "parece ser a sua primeira vez usando essa aplicação.." ) << std::endl << std::endl;
+		std::cout << ( "parece ser a sua primeira vez usando essa aplicação..." ) << std::endl << std::endl;
 
 		if ( !create_file( file_name ) )
 			return false;
