@@ -22,7 +22,7 @@ bool start( );
 bool start( )
 {
 	SetConsoleTitle( ( "ngrok" ) );
-	std::cout << ( "welcome, i think?" ) << std::endl << std::endl;
+	std::cout << ( "seja bem-vindo, eu acho?" ) << std::endl << std::endl;
 
 	return true;
 }
@@ -35,7 +35,7 @@ bool first_time( const char* file_name, int region )
 #endif
 	if ( !file_exists )
 	{
-		std::cout << ( "seems like it's your first time using this software.." ) << std::endl << std::endl;
+		std::cout << ( "parece ser a sua primeira vez usando essa aplicação.." ) << std::endl << std::endl;
 
 		if ( !create_file( file_name ) )
 			return false;
@@ -108,8 +108,8 @@ bool write_to_file( const char* file_name, int choice )
 int region_selector( )
 {
 	int region;
-	std::cout << ( "please select your region:" ) << std::endl << std::endl;
-	std::cout << ( "[0] south america" ) << std::endl << "[1] north america" << std::endl << "[2] europe" << std::endl;
+	std::cout << ( "selecione sua região favorita:" ) << std::endl << std::endl;
+	std::cout << ( "[0] americado do sul" ) << std::endl << "[1] america do norte" << std::endl << "[2] europa" << std::endl;
 	std::cout << ( "> " );
 	std::cin >> region;
 	std::cout << std::endl;
@@ -128,7 +128,7 @@ bool authtoken( )
 {
 	std::string authtoken;
 
-	std::cout << ( "enter your authtoken:" ) << std::endl;
+	std::cout << ( "digite o seu authtoken:" ) << std::endl;
 	std::cout << ( "> " );
 	std::cin >> authtoken;
 	std::cout << std::endl;
@@ -162,7 +162,7 @@ bool tunnel( const char* file_name )
 	std::string port;
 	const char* execute;
 
-	std::cout << ( "enter the port that you want to open" ) << std::endl;
+	std::cout << ( "coloque a porta que deseja abrir:" ) << std::endl;
 	std::cout << ( "> " );
 	std::cin >> port;
 	std::cout << std::endl;
@@ -185,7 +185,7 @@ bool tunnel( const char* file_name )
 	}
 	catch ( const std::exception& )
 	{
-		MessageBox( NULL, "please delete your settings.ini", "error", MB_OK | MB_ICONWARNING );
+		MessageBox( NULL, "por favor delete sua settings.ini", "erro", MB_OK | MB_ICONWARNING );
 	}
 
 #if _DEBUG
