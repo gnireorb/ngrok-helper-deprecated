@@ -1,16 +1,17 @@
-<h1 align="center">testing</h1>
+<h1 align="center">ngrok helper</h1>
 
 ### como usar
 - https://www.youtube.com/watch?v=Ea7_NksyEkQ
 
-### how to use
-- download ngrok at ngrok.com, and extract it;
-- download testing software at the releases tab;
-- put both of them at a folder and run testing.exe;
+### todo
+- possibilidade de resetar as configurações usando um parametro como --reset
+- baixar automaticamente o ngrok.exe
 
-### about the project
-- this is not a project
-- and this sucks
+### bugs
+- apos criado o c://users//{user}//.ngrok2 (pasta), não é possivel alterar o authtoken.
+- error handling ruim. (improvement)
 
+### sobre esse projeto
+- isto não é um projeto
 
 
