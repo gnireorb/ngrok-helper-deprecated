@@ -118,7 +118,7 @@ int region_selector( )
 	std::cout << ( "[region]: " ) << region << std::endl;
 #endif
 
-	if ( region > 6 || region < 0 )
+	if ( region > 2 || region < 0 )
 		return false;
 
 	return region;
@@ -192,7 +192,7 @@ bool tunnel( const char* file_name )
 	std::cout << ( "[region]: " ) << region << std::endl;
 #endif
 
-	if ( region > 6 || region < 0 )
+	if ( region > 2 || region < 0 )
 		return false;
 
 	switch ( region )
