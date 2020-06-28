@@ -1,5 +1,6 @@
 #pragma once
 #include <Windows.h>
+#include <string>
 #include <future>
 #include <iostream>
 #include <fstream>
@@ -14,9 +15,9 @@ bool create_file( const char* name );
 bool write_to_file( const char* name, int choice );
 int region_selector( );
 bool authtoken( );
-bool tunnel( const char* file_name );
+bool create_tunnel( const char* file_name );
 bool ngrok_yml( );
-bool first_time( const char* file_name, int region );
+bool first_time( const char* file_name, int region, bool reset );
 bool start( );
 
 bool start( )
@@ -27,16 +28,23 @@ bool start( )
 	return true;
 }
 
-bool first_time( const char* file_name, int region )
+bool first_time( const char* file_name, int region, bool reset )
 {
-	bool file_exists = ngrok_yml( );
+#if _DEBUG
+	std::cout << ( "[reset]: " ) << reset << std::endl;
+#endif
+
+	bool file_exists = false;
+
+	if ( reset != true )
+		file_exists = ngrok_yml( );
+
 #if _DEBUG
 	std::cout << ( "[file_exists]: " ) << file_exists << std::endl;
 #endif
+
 	if ( !file_exists )
 	{
-		std::cout << ( "parece ser a sua primeira vez usando essa aplicação..." ) << std::endl << std::endl;
-
 		if ( !create_file( file_name ) )
 			return false;
 
@@ -108,7 +116,7 @@ bool write_to_file( const char* file_name, int choice )
 int region_selector( )
 {
 	int region;
-	std::cout << ( "selecione sua região favorita:" ) << std::endl << std::endl;
+	std::cout << ( "selecione sua regiao favorita:" ) << std::endl << std::endl;
 	std::cout << ( "[0] america do sul" ) << std::endl << "[1] america do norte" << std::endl << "[2] europa" << std::endl;
 	std::cout << ( "> " );
 	std::cin >> region;
@@ -154,7 +162,7 @@ bool authtoken( )
 	}
 }
 
-bool tunnel( const char* file_name )
+bool create_tunnel( const char* file_name )
 {
 	/* wtf */
 	int region;
@@ -171,7 +179,6 @@ bool tunnel( const char* file_name )
 	std::cout << ( "[port]: " ) << port << std::endl;
 #endif
 
-	/* ifstream is for read-only */
 	std::ifstream file;
 	file.open( file_name, std::ios::in );
 	if ( !file.is_open( ) )
