@@ -6,8 +6,7 @@
 </div>
 
 # Downloads
-- [Windows (x64)](https://github.com/hibroering/testing/releases/download/r-1.3/testing.exe)<br>
-- [Windows (x86 & x64)](https://github.com/hibroering/testing/releases/download/r-1.4-beta/testing.exe)<br>
+- [Windows (x86 & x64)](https://github.com/hibroering/ngrok-helper/releases/download/r-1.4/testing.exe)<br>
 
 # Vídeo
 - https://www.youtube.com/watch?v=Ea7_NksyEkQ
@@ -17,7 +16,7 @@
 - O resto é com você, tudo esta disponivel no [ngrok](https://ngrok.com/) desde o seu authtoken ate o download.
 
 # Suporte
-- Todo o suporte é direcionado ao [Discord](https://discord.gg/yfWdh5), e todos os downloads são direcionados no [GitHub](https://github.com/hibroering/testing/releases).
+- Todo o suporte é direcionado ao [Discord](https://discord.gg/yfWdh5), e todos os downloads são direcionados no [GitHub](https://github.com/hibroering/ngrok-helper/releases).
 
 # Erros ou bugs
 - [GitHub](https://github.com/hibroering/github/issues) ou [Discord](https://discord.gg/yfWdh5).
