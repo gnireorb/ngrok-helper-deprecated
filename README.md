@@ -19,7 +19,7 @@
 - Todo o suporte é direcionado ao [Discord](https://discord.gg/yfWdh5), e todos os downloads são direcionados no [GitHub](https://github.com/hibroering/ngrok-helper/releases).
 
 # Erros ou bugs
-- [GitHub](https://github.com/hibroering/github/issues) ou [Discord](https://discord.gg/yfWdh5).
+- [GitHub](https://github.com/hibroering/ngrok-helper/issues) ou [Discord](https://discord.gg/yfWdh5).
 
 # Sobre
 - O único contribuidor desse projeto sou eu [@hibroering](https://github.com/hibroering).
