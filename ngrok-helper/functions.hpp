@@ -27,8 +27,13 @@ bool init( )
 	std::ifstream file( settings::file_name );
 
 	if ( !file.good( ) )
+	{
 		if ( !create_file( settings::file_name ) )
 			return false;
+
+		if ( !write_to_file( settings::file_name, settings::region ) )
+			return false;
+	}
 
 	return true;
 }
