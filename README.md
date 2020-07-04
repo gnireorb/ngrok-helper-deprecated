@@ -6,14 +6,12 @@
 </div>
 
 # Downloads
-- [Windows (x86 & x64)](https://github.com/hibroering/ngrok-helper/releases/download/r-1.4/testing.exe)<br>
-
-# Vídeo
-- https://www.youtube.com/watch?v=Ea7_NksyEkQ
+- Você precisa compilar.
 
 # Como usar:
-- Na mesma pasta, baixe o [ngrok](https://ngrok.com/) e abra o **testing.exe**.
-- O resto é com você, tudo esta disponivel no [ngrok](https://ngrok.com/) desde o seu authtoken ate o download.
+- Baixe o **ngrok-helper.exe**, coloque em uma pasta.
+- Na mesma pasta, baixe o [ngrok](https://ngrok.com/) e abra o **ngrok-helper.exe**.
+- O resto é com você, tudo esta disponivel no [ngrok](https://ngrok.com/).
 
 # Suporte
 - Todo o suporte é direcionado ao [Discord](https://discord.gg/yfWdh5), e todos os downloads são direcionados no [GitHub](https://github.com/hibroering/ngrok-helper/releases).
@@ -24,3 +22,8 @@
 # Sobre
 - O único contribuidor desse projeto sou eu [@hibroering](https://github.com/hibroering).
 - Você não é permitido de criar downloads externos.
+
+# Creditos
+- [HTTPRequest](https://github.com/elnormous/HTTPRequest)
+- [imgui](https://github.com/ocornut/imgui)
+- [rapidjson](https://github.com/Tencent/rapidjson)
