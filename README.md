@@ -6,7 +6,7 @@
 </div>
 
 # Downloads
-- Você precisa compilar.
+- [Windows (x86 & x64)](https://github.com/hibroering/ngrok-helper/releases/download/v0.2/ngrok-helper.exe)
 
 # Como usar:
 - Baixe o **ngrok-helper.exe**, coloque em uma pasta.
