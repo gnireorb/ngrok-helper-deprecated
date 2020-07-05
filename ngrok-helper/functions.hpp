@@ -75,7 +75,7 @@ bool create_tunnel( const char* file_name, int port, int region )
 		get_public_url( );
 		break;
 	case 1:
-		str_string = "ngrok tcp " + str_port + " --region na";
+		str_string = "ngrok tcp " + str_port + " --region us";
 		execute = str_string.c_str( );
 		WinExec( execute, SW_HIDE );
 		get_public_url( );		
