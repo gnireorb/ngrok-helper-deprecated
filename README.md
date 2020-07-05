@@ -8,6 +8,9 @@
 # Downloads
 - [Windows (x86 & x64)](https://github.com/hibroering/ngrok-helper/releases/download/v0.2/ngrok-helper.exe)
 
+# Imagens
+- ![image](https://user-images.githubusercontent.com/62901166/86522734-d9d0b080-be38-11ea-815d-a6017a0ab302.png)
+
 # Como usar:
 - Baixe o **ngrok-helper.exe**, coloque em uma pasta.
 - Na mesma pasta, baixe o [ngrok](https://ngrok.com/) e abra o **ngrok-helper.exe**.
