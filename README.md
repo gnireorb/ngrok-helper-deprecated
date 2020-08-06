@@ -17,14 +17,15 @@
 - O resto é com você, tudo esta disponivel no [ngrok](https://ngrok.com/).
 
 # Suporte
-- Todo o suporte é direcionado ao [Discord](https://discord.gg/yfWdh5), e todos os downloads são direcionados no [GitHub](https://github.com/hibroering/ngrok-helper/releases).
+- Todo o suporte é direcionado ao [GitHub](https://github.com/hibroering/ngrok-helper/issues), e todos os downloads também são direcionados no [GitHub](https://github.com/hibroering/ngrok-helper/releases).
 
 # Erros ou bugs
-- [GitHub](https://github.com/hibroering/ngrok-helper/issues) ou [Discord](https://discord.gg/yfWdh5).
+- [GitHub](https://github.com/hibroering/ngrok-helper/issues).
 
 # Sobre
 - O único contribuidor desse projeto sou eu [@hibroering](https://github.com/hibroering).
 - Você não é permitido de criar downloads externos.
+- Se quiser me contatar, me adicione no Discord **Broering#9642**.
 
 # Creditos
 - [HTTPRequest](https://github.com/elnormous/HTTPRequest)
