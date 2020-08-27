@@ -185,10 +185,9 @@ int main( int, char** )
         {
             ImGui::SetNextWindowSize( ImVec2( 360, 656 ), ImGuiCond_FirstUseEver );
             ImGui::SetNextWindowPos( ImVec2( 15, 12 ), ImGuiCond_FirstUseEver );
-            if ( ImGui::Begin( "hibroering/ngrok-helper", NULL, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize ) )
+            if ( ImGui::Begin( "ngrok-helper", NULL, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize ) )
             {
                 ImGui::Text( "ngrok-helper" );
-                ImGui::Text( "get your authtoken at ngrok.com" );
 
                 ImGui::Separator( );
 
@@ -250,14 +249,13 @@ int main( int, char** )
                 }
                 if ( ImGui::Button( "close ngrok-helper" ) )
                 {
+                    std::system( "taskkill /f /im ngrok.exe" );
                     exit( -1 );
                 }
 
                 ImGui::Separator( );
 
-                ImGui::Text( "made by broering." );
-                ImGui::Text( "thanks to ngrok.com to make it possible." );
-                ImGui::Text( "github.com/hibroering/ngrok-helper" );
+                ImGui::Text( "github.com/gnireorb/ngrok-helper" );
             }
 
             ImGui::End( );

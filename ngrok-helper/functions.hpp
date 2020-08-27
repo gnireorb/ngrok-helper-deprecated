@@ -93,10 +93,18 @@ bool create_tunnel( const char* file_name, int port, int region )
 
 bool get_public_url( )
 {
-	http::Request request( "http://127.0.0.1:4040/api/tunnels" );
-	const http::Response response = request.send( "GET" );
-	std::string j = std::string( response.body.begin( ), response.body.end( ) );
-	const char* json = j.c_str( );
+	std::string srcreq; 
+	try
+	{
+		http::Request request( "http://127.0.0.1:4040/api/tunnels" );
+		const http::Response response = request.send( "GET" );
+		srcreq = std::string( response.body.begin( ), response.body.end( ) );
+	}
+	catch ( const std::exception& e )
+	{
+		std::cerr << "Request failed, error: " << e.what( ) << '\n';
+	}
+	const char* json = srcreq.c_str( );
 	Document d;
 	d.Parse( json );
 	Value const& tunnels = d[ "tunnels" ];
