@@ -9,7 +9,7 @@
 - [Windows (x86 & x64)](https://github.com/gnireorb/ngrok-helper/releases/download/v0.2/ngrok-helper.exe)
 
 # Imagens
-![image](https://user-images.githubusercontent.com/62901166/86522734-d9d0b080-be38-11ea-815d-a6017a0ab302.png)
+![image](https://user-images.githubusercontent.com/62901166/91380475-72f9c300-e7fb-11ea-835f-dd5a86d806d1.png)
 
 # Como usar:
 - Baixe o **ngrok-helper.exe**, coloque em uma pasta.
