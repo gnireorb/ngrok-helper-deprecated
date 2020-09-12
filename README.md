@@ -6,7 +6,7 @@
 </div>
 
 # Downloads
-- [Windows (x86 & x64)](https://github.com/gnireorb/ngrok-helper/releases/download/v0.2/ngrok-helper.exe)
+- [Windows (x86 & x64)](https://github.com/gnireorb/ngrok-helper/releases/download/v0.4/ngrok-helper.exe)
 
 # Imagens
 ![image](https://user-images.githubusercontent.com/62901166/93002797-db40e800-f50f-11ea-91b8-49272037a72d.png)
