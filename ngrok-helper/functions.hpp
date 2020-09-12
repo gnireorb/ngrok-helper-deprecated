@@ -3,87 +3,97 @@
 #include "../dependencies/rapidjson/document.h"
 #include <Windows.h>
 #include <string>
-#include <future>
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <tchar.h>
-
-#define _CRT_SECURE_NO_WARNINGS
+#include <future>
 
 using namespace rapidjson;
 
-bool init( );
-bool create_file( const char* file_name );
-bool write_to_file( const char* file_name, int integer );
-bool create_tunnel( const char* file_name, int port, int region );
-bool get_public_url( );
-void to_clipboard( HWND hwnd, const std::string& s );
+inline bool init( );
+inline bool create_file( const char* file_name );
+inline bool write_to_file( const char* file_name, int integer );
+inline bool create_tunnel( int port, int region );
+inline bool get_public_url( );
+inline bool file_exists( const std::string& file_name );
+inline void to_clipboard( HWND hwnd, const std::string& s );
 
-bool init( )
+inline bool init( )
 {
 	SetConsoleTitle( ( "ngrok" ) );
 
-	std::ifstream file( settings::file_name );
-
-	if ( !file.good( ) )
+	if ( !file_exists( "ngrok.exe" ) )
 	{
-		if ( !create_file( settings::file_name ) )
+		MessageBox( NULL, "ngrok.exe é inexistente, baixe-o em 'ngrok.com'.", "erro", MB_ICONERROR );
+		return false;
+	}
+
+	if ( !file_exists( "settings.ini" ) )
+	{
+		if ( !create_file( "settings.ini" ) )
 			return false;
 
-		if ( !write_to_file( settings::file_name, settings::region ) )
+		if ( !write_to_file( "settings.ini", settings::region ) )
 			return false;
 	}
 
 	return true;
 }
 
-bool create_file( const char* file_name )
+inline bool create_file( const char* file_name )
 {
 	std::ofstream file( file_name, std::ios::out | std::ios::trunc );
 	file.close( );
 	return file.good( );
 }
 
-bool write_to_file( const char* file_name, int integer )
+inline bool write_to_file( const char* file_name, int integer )
 {
 	std::ofstream file( file_name, std::ios::out | std::ios::trunc );
 	std::string str = std::to_string( integer );
 	file << str;
 	file.close( );
-
 	return true;
 }
 
-bool create_tunnel( const char* file_name, int port, int region )
+inline bool create_tunnel( int port, int region )
 {
-	std::string str_port;
-	std::string str_string;
-	const char* execute;
+	std::string commandline;
 
-	if ( region > 2 || region < 0 )
+	if ( region >= 4 || region < 0 )
 		return false;
-
-	str_port = std::to_string( port );
 
 	switch ( region )
 	{
 	case 0:
-		str_string = "ngrok tcp " + str_port + " --region sa";
-		execute = str_string.c_str();
-		WinExec( execute, SW_HIDE );
+		commandline = "ngrok tcp " + std::to_string( port ) + " --region sa";
+		if ( WinExec( commandline.c_str( ), SW_HIDE ) >= 31 )
+			std::this_thread::sleep_for( std::chrono::milliseconds( 500 ) );
 		get_public_url( );
 		break;
 	case 1:
-		str_string = "ngrok tcp " + str_port + " --region us";
-		execute = str_string.c_str( );
-		WinExec( execute, SW_HIDE );
-		get_public_url( );		
+		commandline = "ngrok tcp " + std::to_string( port ) + " --region us";
+		if ( WinExec( commandline.c_str( ), SW_HIDE ) >= 31 )
+			std::this_thread::sleep_for( std::chrono::milliseconds( 500 ) );
+		get_public_url( );
 		break;
 	case 2:
-		str_string = "ngrok tcp " + str_port + " --region eu";
-		execute = str_string.c_str( );
-		WinExec( execute, SW_HIDE );
+		commandline = "ngrok tcp " + std::to_string( port ) + " --region eu";
+		if ( WinExec( commandline.c_str( ), SW_HIDE ) >= 31 )
+			std::this_thread::sleep_for( std::chrono::milliseconds( 500 ) );
+		get_public_url( );
+		break;
+	case 3:
+		commandline = "ngrok tcp " + std::to_string( port ) + " --region ap";
+		if ( WinExec( commandline.c_str( ), SW_HIDE ) >= 31 )
+			std::this_thread::sleep_for( std::chrono::milliseconds( 500 ) );
+		get_public_url( );
+		break;
+	case 4:
+		commandline = "ngrok tcp " + std::to_string( port ) + " --region au";
+		if ( WinExec( commandline.c_str( ), SW_HIDE ) >= 31 )
+			std::this_thread::sleep_for( std::chrono::milliseconds( 500 ) );
 		get_public_url( );
 		break;
 	}
@@ -91,20 +101,20 @@ bool create_tunnel( const char* file_name, int port, int region )
 	return true;
 }
 
-bool get_public_url( )
+inline bool get_public_url( )
 {
-	std::string srcreq; 
+	std::string api_request;
 	try
 	{
 		http::Request request( "http://127.0.0.1:4040/api/tunnels" );
 		const http::Response response = request.send( "GET" );
-		srcreq = std::string( response.body.begin( ), response.body.end( ) );
+		api_request = std::string( response.body.begin( ), response.body.end( ) );
 	}
 	catch ( const std::exception& e )
 	{
-		std::cerr << "Request failed, error: " << e.what( ) << '\n';
+		std::cerr << "request failed, error: " << e.what( ) << '\n';
 	}
-	const char* json = srcreq.c_str( );
+	const char* json = api_request.c_str( );
 	Document d;
 	d.Parse( json );
 	Value const& tunnels = d[ "tunnels" ];
@@ -113,14 +123,14 @@ bool get_public_url( )
 		std::string public_url = tunnel_url[ "public_url" ].GetString( );
 		public_url.erase( 0, 6 );
 
-		settings::ip_address = public_url;
+		settings::ip_address = public_url.c_str( );
 	}
 
 	return true;
 }
 
 /* https://www.cplusplus.com/forum/general/48837/#msg266980 */
-void to_clipboard( HWND hwnd, const std::string& s ) {
+inline void to_clipboard( HWND hwnd, const std::string& s ) {
 	OpenClipboard( hwnd );
 	EmptyClipboard( );
 	HGLOBAL hg = GlobalAlloc( GMEM_MOVEABLE, s.size( ) + 1 );
@@ -134,4 +144,9 @@ void to_clipboard( HWND hwnd, const std::string& s ) {
 	SetClipboardData( CF_TEXT, hg );
 	CloseClipboard( );
 	GlobalFree( hg );
+}
+
+inline bool file_exists( const std::string& file_name ) {
+	struct stat buffer;
+	return ( stat( file_name.c_str( ), &buffer ) == 0 );
 }

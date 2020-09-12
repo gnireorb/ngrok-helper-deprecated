@@ -6,6 +6,8 @@
 #include "functions.hpp"
 #include <stdio.h>
 
+void SetupImGuiStyle2( );
+
 #if defined(IMGUI_IMPL_OPENGL_LOADER_GL3W)
 #include <GL/gl3w.h>            // Initialize with gl3wInit()
 #elif defined(IMGUI_IMPL_OPENGL_LOADER_GLEW)
@@ -45,9 +47,7 @@ BOOL WINAPI CtrlHandler( DWORD fdwCtrlType )
     case CTRL_C_EVENT:
     case CTRL_CLOSE_EVENT:
     case CTRL_BREAK_EVENT:
-        /* bad way to close a .exe */
         std::system( "taskkill /f /im ngrok.exe" );
-        FreeConsole( );
         exit( -1 );
         break;
     default:
@@ -117,49 +117,7 @@ int main( int, char** )
     ImGui::GetStyle( ).ChildRounding = 4.0f;
     ImGui::GetStyle( ).WindowTitleAlign = ImVec2( 0.5f, 0.5f );
 
-    ImVec4* colors = ImGui::GetStyle( ).Colors;
-    colors[ ImGuiCol_Text ] = ImVec4( 1.00f, 1.00f, 1.00f, 1.00f );
-    colors[ ImGuiCol_TextDisabled ] = ImVec4( 0.50f, 0.50f, 0.50f, 1.00f );
-    colors[ ImGuiCol_WindowBg ] = ImVec4( 0.06f, 0.06f, 0.06f, 0.94f );
-    colors[ ImGuiCol_ChildBg ] = ImVec4( 1.00f, 1.00f, 1.00f, 0.00f );
-    colors[ ImGuiCol_PopupBg ] = ImVec4( 0.08f, 0.08f, 0.08f, 0.94f );
-    colors[ ImGuiCol_Border ] = ImVec4( 0.43f, 0.43f, 0.50f, 0.50f );
-    colors[ ImGuiCol_BorderShadow ] = ImVec4( 0.00f, 0.00f, 0.00f, 0.00f );
-    colors[ ImGuiCol_FrameBg ] = ImVec4( 0.20f, 0.21f, 0.22f, 0.54f );
-    colors[ ImGuiCol_FrameBgHovered ] = ImVec4( 0.40f, 0.40f, 0.40f, 0.40f );
-    colors[ ImGuiCol_FrameBgActive ] = ImVec4( 0.18f, 0.18f, 0.18f, 0.67f );
-    colors[ ImGuiCol_TitleBg ] = ImVec4( 0.04f, 0.04f, 0.04f, 1.00f );
-    colors[ ImGuiCol_TitleBgActive ] = ImVec4( 0.29f, 0.29f, 0.29f, 1.00f );
-    colors[ ImGuiCol_TitleBgCollapsed ] = ImVec4( 0.00f, 0.00f, 0.00f, 0.51f );
-    colors[ ImGuiCol_MenuBarBg ] = ImVec4( 0.14f, 0.14f, 0.14f, 1.00f );
-    colors[ ImGuiCol_ScrollbarBg ] = ImVec4( 0.02f, 0.02f, 0.02f, 0.53f );
-    colors[ ImGuiCol_ScrollbarGrab ] = ImVec4( 0.31f, 0.31f, 0.31f, 1.00f );
-    colors[ ImGuiCol_ScrollbarGrabHovered ] = ImVec4( 0.41f, 0.41f, 0.41f, 1.00f );
-    colors[ ImGuiCol_ScrollbarGrabActive ] = ImVec4( 0.51f, 0.51f, 0.51f, 1.00f );
-    colors[ ImGuiCol_CheckMark ] = ImVec4( 0.94f, 0.94f, 0.94f, 1.00f );
-    colors[ ImGuiCol_SliderGrab ] = ImVec4( 0.51f, 0.51f, 0.51f, 1.00f );
-    colors[ ImGuiCol_SliderGrabActive ] = ImVec4( 0.86f, 0.86f, 0.86f, 1.00f );
-    colors[ ImGuiCol_Button ] = ImVec4( 0.44f, 0.44f, 0.44f, 0.40f );
-    colors[ ImGuiCol_ButtonHovered ] = ImVec4( 0.46f, 0.47f, 0.48f, 1.00f );
-    colors[ ImGuiCol_ButtonActive ] = ImVec4( 0.42f, 0.42f, 0.42f, 1.00f );
-    colors[ ImGuiCol_Header ] = ImVec4( 0.70f, 0.70f, 0.70f, 0.31f );
-    colors[ ImGuiCol_HeaderHovered ] = ImVec4( 0.70f, 0.70f, 0.70f, 0.80f );
-    colors[ ImGuiCol_HeaderActive ] = ImVec4( 0.48f, 0.50f, 0.52f, 1.00f );
-    colors[ ImGuiCol_Separator ] = ImVec4( 0.43f, 0.43f, 0.50f, 0.50f );
-    colors[ ImGuiCol_SeparatorHovered ] = ImVec4( 0.72f, 0.72f, 0.72f, 0.78f );
-    colors[ ImGuiCol_SeparatorActive ] = ImVec4( 0.51f, 0.51f, 0.51f, 1.00f );
-    colors[ ImGuiCol_ResizeGrip ] = ImVec4( 0.91f, 0.91f, 0.91f, 0.25f );
-    colors[ ImGuiCol_ResizeGripHovered ] = ImVec4( 0.81f, 0.81f, 0.81f, 0.67f );
-    colors[ ImGuiCol_ResizeGripActive ] = ImVec4( 0.46f, 0.46f, 0.46f, 0.95f );
-    colors[ ImGuiCol_PlotLines ] = ImVec4( 0.61f, 0.61f, 0.61f, 1.00f );
-    colors[ ImGuiCol_PlotLinesHovered ] = ImVec4( 1.00f, 0.43f, 0.35f, 1.00f );
-    colors[ ImGuiCol_PlotHistogram ] = ImVec4( 0.73f, 0.60f, 0.15f, 1.00f );
-    colors[ ImGuiCol_PlotHistogramHovered ] = ImVec4( 1.00f, 0.60f, 0.00f, 1.00f );
-    colors[ ImGuiCol_TextSelectedBg ] = ImVec4( 0.87f, 0.87f, 0.87f, 0.35f );
-    colors[ ImGuiCol_ModalWindowDarkening ] = ImVec4( 0.80f, 0.80f, 0.80f, 0.35f );
-    colors[ ImGuiCol_DragDropTarget ] = ImVec4( 1.00f, 1.00f, 0.00f, 0.90f );
-    colors[ ImGuiCol_NavHighlight ] = ImVec4( 0.60f, 0.60f, 0.60f, 1.00f );
-    colors[ ImGuiCol_NavWindowingHighlight ] = ImVec4( 1.00f, 1.00f, 1.00f, 0.70f );
+    SetupImGuiStyle2( );
 
     ImGui_ImplGlfw_InitForOpenGL( window, true );
     ImGui_ImplOpenGL3_Init( glsl_version );
@@ -167,7 +125,7 @@ int main( int, char** )
     ImFont* font = ImGui::GetIO( ).Fonts->AddFontFromMemoryTTF( const_cast<std::uint8_t*>( font_rubik ), sizeof( font_rubik ), 20.f, NULL );
     IM_ASSERT( font != NULL );
 
-    ImVec4 clear_color = ImVec4( 0.07f, 0.07f, 0.07f, 1.00f );
+    ImVec4 clear_color = ImVec4( 0.039f, 0.066f, 0.105f, 1.00f );
 
     /* loop */
     while ( !glfwWindowShouldClose( window ) )
@@ -178,9 +136,9 @@ int main( int, char** )
         ImGui_ImplGlfw_NewFrame( );
         ImGui::NewFrame( );
 
-        std::string ngrok_authtoken;
-
+        static bool debug_mode = false;
         static char buf[ 32 ];
+        static float color[ 4 ] = { 0.046f, 0.108f, 0.157f, 0.5f };
 
         {
             ImGui::SetNextWindowSize( ImVec2( 360, 656 ), ImGuiCond_FirstUseEver );
@@ -188,69 +146,60 @@ int main( int, char** )
             if ( ImGui::Begin( "ngrok-helper", NULL, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize ) )
             {
                 ImGui::Text( "ngrok-helper" );
-
                 ImGui::Separator( );
-
                 ImGui::Text( "tunnel" );
                 ImGui::PushItemWidth( 200 );
-                ImGui::InputInt( "port###port", &settings::port );
+                ImGui::InputInt( "port", &settings::port );
                 ImGui::PopItemWidth( );
                 if ( ImGui::Button( "create a tunnel" ) )
                 {
-                    if (create_tunnel( settings::file_name, settings::port, settings::region ))
+                    if ( create_tunnel( settings::port, settings::region ))
                         get_public_url( );
                 }
-
-                ImGui::InputText( "ip###ip", (char*)settings::ip_address.c_str( ), IM_ARRAYSIZE( buf ) );
-
-                if ( ImGui::Button( "get ip (manually)" ) )
+                ImGui::SameLine( );
+                if ( ImGui::Button( "close tunnel" ) )
+                {
+                    std::system( "taskkill /f /im ngrok.exe" );
+                }
+                ImGui::InputText( "IP", (char*)settings::ip_address, IM_ARRAYSIZE( buf ) );
+                if ( ImGui::Button( "get IP" ) )
                 {
                     get_public_url( );
                 }
                 ImGui::SameLine( );
-                if ( ImGui::Button( "copy ip" ) )
+                if ( ImGui::Button( "copy IP" ) )
                 {
                     HWND hwnd = GetDesktopWindow( );
                     to_clipboard( hwnd, settings::ip_address );
                 }
-
                 ImGui::Separator( );
-
                 ImGui::Text( "authtoken" );
-                ImGui::InputText( "authtoken###authtoken", (char*)settings::authtoken, IM_ARRAYSIZE( settings::authtoken ) );
+                ImGui::InputText( "authtoken", (char*)settings::authtoken, IM_ARRAYSIZE( settings::authtoken ) );
                 if ( ImGui::Button( "set ngrok authtoken" ) )
                 {
-                    ngrok_authtoken = "ngrok authtoken " + ( std::string )settings::authtoken;
-
-                    const char* execute = ngrok_authtoken.c_str( );
-
-                    std::system( execute );
+                    std::string commandline = "ngrok authtoken " + ( std::string )settings::authtoken;
+                    std::system( commandline.c_str( ) );
                 }
-
                 ImGui::Separator( );
-
                 ImGui::Text( "region" );
                 if ( ImGui::Combo( "tunnel region", &settings::region, settings::regions, sizeof( settings::regions ) / sizeof( *settings::regions ) ) )
                 {
-                    if ( !write_to_file( settings::file_name, settings::region ) )
+                    if ( !write_to_file( "settings.ini", settings::region ) )
                         return false;
                 }
-
                 ImGui::Separator( );
-
-                ImGui::Text( "debug stuff" );
-                if ( ImGui::Button( "debug window" ) )
+                if ( ImGui::CollapsingHeader( "debug stuff" ) )
                 {
-                    ::ShowWindow( ::GetConsoleWindow( ), SW_SHOW );
-                }
-                if ( ImGui::Button( "force close ngrok" ) )
-                {
-                    std::system( "taskkill /f /im ngrok.exe" );
-                }
-                if ( ImGui::Button( "close ngrok-helper" ) )
-                {
-                    std::system( "taskkill /f /im ngrok.exe" );
-                    exit( -1 );
+                    if ( ImGui::Button( "console window" ) )
+                    {
+                        if ( !debug_mode ) { ::ShowWindow( ::GetConsoleWindow( ), SW_SHOW ); debug_mode = true; } else { ::ShowWindow( ::GetConsoleWindow( ), SW_HIDE ); debug_mode = false; }
+                    }
+                    ImGui::SameLine( );
+                    if ( ImGui::Button( "taskkill ngrok.exe" ) )
+                    {
+                        std::system( "taskkill /f /im ngrok.exe" );
+                    }
+                    ImGui::ColorEdit3( "color", color );
                 }
 
                 ImGui::Separator( );
@@ -280,4 +229,64 @@ int main( int, char** )
     glfwTerminate( );
 
     return 0;
+}
+
+struct ImVec3 { float x, y, z; ImVec3( float _x = 0.0f, float _y = 0.0f, float _z = 0.0f ) { x = _x; y = _y; z = _z; } };
+
+void imgui_easy_theming( ImVec3 color_for_text, ImVec3 color_for_head, ImVec3 color_for_area, ImVec3 color_for_body, ImVec3 color_for_pops )
+{
+    ImGuiStyle& style = ImGui::GetStyle( );
+
+    style.Colors[ ImGuiCol_Text ] = ImVec4( color_for_text.x, color_for_text.y, color_for_text.z, 1.00f );
+    style.Colors[ ImGuiCol_TextDisabled ] = ImVec4( color_for_text.x, color_for_text.y, color_for_text.z, 0.58f );
+    style.Colors[ ImGuiCol_WindowBg ] = ImVec4( color_for_body.x, color_for_body.y, color_for_body.z, 0.95f );
+    style.Colors[ ImGuiCol_ChildBg ] = ImVec4( color_for_area.x, color_for_area.y, color_for_area.z, 0.58f );
+    style.Colors[ ImGuiCol_Border ] = ImVec4( color_for_body.x, color_for_body.y, color_for_body.z, 0.00f );
+    style.Colors[ ImGuiCol_BorderShadow ] = ImVec4( color_for_body.x, color_for_body.y, color_for_body.z, 0.00f );
+    style.Colors[ ImGuiCol_FrameBg ] = ImVec4( color_for_area.x, color_for_area.y, color_for_area.z, 1.00f );
+    style.Colors[ ImGuiCol_FrameBgHovered ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 1.00f );
+    style.Colors[ ImGuiCol_FrameBgActive ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 1.00f );
+    style.Colors[ ImGuiCol_TitleBg ] = ImVec4( color_for_area.x, color_for_area.y, color_for_area.z, 1.00f );
+    style.Colors[ ImGuiCol_TitleBgCollapsed ] = ImVec4( color_for_area.x, color_for_area.y, color_for_area.z, 0.75f );
+    style.Colors[ ImGuiCol_TitleBgActive ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 1.00f );
+    style.Colors[ ImGuiCol_MenuBarBg ] = ImVec4( color_for_area.x, color_for_area.y, color_for_area.z, 0.47f );
+    style.Colors[ ImGuiCol_ScrollbarBg ] = ImVec4( color_for_area.x, color_for_area.y, color_for_area.z, 1.00f );
+    style.Colors[ ImGuiCol_ScrollbarGrab ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 0.21f );
+    style.Colors[ ImGuiCol_ScrollbarGrabHovered ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 0.78f );
+    style.Colors[ ImGuiCol_ScrollbarGrabActive ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 1.00f );
+    style.Colors[ ImGuiCol_CheckMark ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 0.80f );
+    style.Colors[ ImGuiCol_SliderGrab ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 0.50f );
+    style.Colors[ ImGuiCol_SliderGrabActive ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 1.00f );
+    style.Colors[ ImGuiCol_Button ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 0.50f );
+    style.Colors[ ImGuiCol_ButtonHovered ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 0.86f );
+    style.Colors[ ImGuiCol_ButtonActive ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 1.00f );
+    style.Colors[ ImGuiCol_Header ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 0.76f );
+    style.Colors[ ImGuiCol_HeaderHovered ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 0.86f );
+    style.Colors[ ImGuiCol_HeaderActive ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 1.00f );
+    style.Colors[ ImGuiCol_ResizeGrip ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 0.15f );
+    style.Colors[ ImGuiCol_ResizeGripHovered ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 0.78f );
+    style.Colors[ ImGuiCol_ResizeGripActive ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 1.00f );
+    style.Colors[ ImGuiCol_PlotLines ] = ImVec4( color_for_text.x, color_for_text.y, color_for_text.z, 0.63f );
+    style.Colors[ ImGuiCol_PlotLinesHovered ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 1.00f );
+    style.Colors[ ImGuiCol_PlotHistogram ] = ImVec4( color_for_text.x, color_for_text.y, color_for_text.z, 0.63f );
+    style.Colors[ ImGuiCol_PlotHistogramHovered ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 1.00f );
+    style.Colors[ ImGuiCol_TextSelectedBg ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 0.43f );
+    style.Colors[ ImGuiCol_PopupBg ] = ImVec4( color_for_pops.x, color_for_pops.y, color_for_pops.z, 0.92f );
+    style.Colors[ ImGuiCol_ModalWindowDarkening ] = ImVec4( color_for_area.x, color_for_area.y, color_for_area.z, 0.73f );
+}
+
+void SetupImGuiStyle2( )
+{
+    // 15 24 37
+    // 22 35 53
+    // 14 22 34
+    // 30 47 73
+    // 0 57 107
+    // 6 31 57
+    static ImVec3 color_for_text = ImVec3( 236.f / 255.f, 240.f / 255.f, 241.f / 255.f );
+    static ImVec3 color_for_head = ImVec3( 30.f / 255.f, 47.f / 255.f, 73.f / 255.f ); /* parte de cima */
+    static ImVec3 color_for_area = ImVec3( 30.f / 255.f, 47.f / 255.f, 73.f / 255.f );
+    static ImVec3 color_for_body = ImVec3( 15.f / 255.f, 24.f / 255.f, 37.f / 255.f ); /* body */
+    static ImVec3 color_for_pops = ImVec3( 22.f / 255.f, 35.f / 255.f, 53.f / 255.f );
+    imgui_easy_theming( color_for_text, color_for_head, color_for_area, color_for_body, color_for_pops );
 }
