@@ -3,8 +3,7 @@
 
 namespace settings
 {
-    std::string ip_address = "tunnel not created yet.";
-    static const char* file_name = "settings.ini";
+    const char* ip_address = "tunnel not yet created.";
     static char authtoken[ 50 ];
     static int port;
     static int region = 0;
@@ -13,5 +12,7 @@ namespace settings
         "south america",
         "north america",
         "europe",
+        "asia",
+        "australia"
     };
 }
