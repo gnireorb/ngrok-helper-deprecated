@@ -1,6 +1,9 @@
 #pragma once
 #include "../dependencies/HTTPRequest/HTTPRequest.hpp"
 #include "../dependencies/rapidjson/document.h"
+#include "../dependencies/rapidjson/stringbuffer.h"
+#include "../dependencies/rapidjson/writer.h"
+#include "../dependencies/rapidjson/document.h"
 #include <Windows.h>
 #include <string>
 #include <iostream>
@@ -12,12 +15,14 @@
 using namespace rapidjson;
 
 inline bool init( );
-inline bool create_file( const char* file_name );
-inline bool write_to_file( const char* file_name, int integer );
-inline bool create_tunnel( int port, int region );
 inline bool get_public_url( );
+inline bool load_settings( );
+inline bool create_file( const char* file_name );
+inline bool write_to_file( const char* file_name, const char* json );
+inline bool create_tunnel( int port, int region );
 inline bool file_exists( const std::string& file_name );
 inline void to_clipboard( HWND hwnd, const std::string& s );
+inline const char* read_file( const char* file_name );
 
 inline bool init( )
 {
@@ -26,17 +31,36 @@ inline bool init( )
 	if ( !file_exists( "ngrok.exe" ) )
 	{
 		MessageBox( NULL, "ngrok.exe é inexistente, baixe-o em 'ngrok.com'.", "erro", MB_ICONERROR );
-		return false;
+		exit( -1 );
 	}
 
-	if ( !file_exists( "settings.ini" ) )
+	if ( !file_exists( "settings.json" ) )
 	{
-		if ( !create_file( "settings.ini" ) )
+		if ( !create_file( "settings.json" ) )
 			return false;
 
-		if ( !write_to_file( "settings.ini", settings::region ) )
+		if ( !write_to_file( "settings.json", "{\"version\":\"0.4\",\"last_port\":0,\"ngrok_region\":0}" ) )
+			return false;
+
+		if ( !load_settings( ) )
 			return false;
 	}
+
+	if ( !load_settings( ) )
+		return false;
+
+	return true;
+}
+
+inline bool load_settings( )
+{
+	Document doc;
+	doc.Parse( read_file( "settings.json" ) );
+
+	std::cout << "[version]: " << doc[ "version" ].GetString( ) << std::endl;
+
+	settings::region = doc[ "ngrok_region" ].GetInt( );
+	settings::port = doc[ "last_port" ].GetInt( );
 
 	return true;
 }
@@ -48,13 +72,28 @@ inline bool create_file( const char* file_name )
 	return file.good( );
 }
 
-inline bool write_to_file( const char* file_name, int integer )
+inline bool write_to_file( const char* file_name, const char* json )
 {
 	std::ofstream file( file_name, std::ios::out | std::ios::trunc );
-	std::string str = std::to_string( integer );
+	std::string str = json;
 	file << str;
 	file.close( );
 	return true;
+}
+
+inline const char* read_file( const char* file_name )
+{
+	std::string output;
+	std::ifstream file;
+	file.open( file_name, std::ios::in );
+	if ( !file.is_open( ) )
+	{
+		MessageBox( NULL, "ocorreu uma falha ao abrir 'settings.json'.", "erro", MB_ICONERROR );
+		exit( -1 );
+	}
+	std::getline( file, output );
+	file.close( );
+	return output.c_str( );
 }
 
 inline bool create_tunnel( int port, int region )
