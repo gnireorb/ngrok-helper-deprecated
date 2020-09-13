@@ -2,6 +2,10 @@
 #include "../dependencies/imgui/imgui_impl_glfw.h"
 #include "../dependencies/imgui/imgui_impl_opengl3.h"
 #include "../dependencies/imgui/font_rubik.hpp"
+#include "../dependencies/rapidjson/document.h"
+#include "../dependencies/rapidjson/stringbuffer.h"
+#include "../dependencies/rapidjson/writer.h"
+#include "../dependencies/rapidjson/document.h"
 #include "settings.hpp"
 #include "functions.hpp"
 #include <stdio.h>
@@ -149,7 +153,17 @@ int main( int, char** )
                 ImGui::Separator( );
                 ImGui::Text( "tunnel" );
                 ImGui::PushItemWidth( 200 );
-                ImGui::InputInt( "port", &settings::port );
+                if ( ImGui::InputInt( "port", &settings::port ) )
+                {
+                    Document doc;
+                    doc.Parse( read_file( "settings.json" ) );
+                    Value& var = doc[ "last_port" ];
+                    var.SetInt( settings::port );
+                    StringBuffer buffer;
+                    Writer<StringBuffer> writer( buffer );
+                    doc.Accept( writer );
+                    write_to_file( "settings.json", buffer.GetString( ) );
+                }
                 ImGui::PopItemWidth( );
                 if ( ImGui::Button( "create a tunnel" ) )
                 {
@@ -184,8 +198,14 @@ int main( int, char** )
                 ImGui::Text( "region" );
                 if ( ImGui::Combo( "tunnel region", &settings::region, settings::regions, sizeof( settings::regions ) / sizeof( *settings::regions ) ) )
                 {
-                    if ( !write_to_file( "settings.ini", settings::region ) )
-                        return false;
+                    Document doc;
+                    doc.Parse( read_file( "settings.json" ) );
+                    Value& var = doc[ "ngrok_region" ];
+                    var.SetInt( settings::region );
+                    StringBuffer buffer;
+                    Writer<StringBuffer> writer( buffer );
+                    doc.Accept( writer );
+                    write_to_file( "settings.json", buffer.GetString( ) );
                 }
                 ImGui::Separator( );
                 if ( ImGui::CollapsingHeader( "debug stuff" ) )
@@ -205,6 +225,7 @@ int main( int, char** )
                 ImGui::Separator( );
 
                 ImGui::Text( "github.com/gnireorb/ngrok-helper" );
+                ImGui::Text( "build - 2e81893 | master" );
             }
 
             ImGui::End( );
