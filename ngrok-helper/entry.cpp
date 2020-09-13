@@ -225,7 +225,6 @@ int main( int, char** )
                 ImGui::Separator( );
 
                 ImGui::Text( "github.com/gnireorb/ngrok-helper" );
-                ImGui::Text( "build - 2e81893 | master" );
             }
 
             ImGui::End( );
