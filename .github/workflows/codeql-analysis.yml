@@ -66,8 +66,9 @@ jobs:
     #    and modify them (or add more) to build your code if your project
     #    uses a compiled language
     
-    - shell: cmd
-    - run: '"%MSBUILD_PATH%\MSBuild.exe" ngrok-helper/ngrok-helper.vcxproj /p:Platform=Win32 /p:Configuration=Release'
+    - name: Build
+      shell: cmd
+      run: '"%MSBUILD_PATH%\MSBuild.exe" ngrok-helper/ngrok-helper.vcxproj /p:Platform=Win32 /p:Configuration=Release'
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
