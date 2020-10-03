@@ -17,7 +17,10 @@ on:
 jobs:
   analyze:
     name: Analyze
-    runs-on: ubuntu-latest
+    runs-on: windows-2019]
+    env:
+      VS_PATH: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\
+      MSBUILD_PATH: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\
 
     strategy:
       fail-fast: false
@@ -62,10 +65,9 @@ jobs:
     # ✏️ If the Autobuild fails above, remove it and uncomment the following three lines
     #    and modify them (or add more) to build your code if your project
     #    uses a compiled language
-
-    #- run: |
-    #   make bootstrap
-    #   make release
+    
+    - shell: cmd
+    - run: '"%MSBUILD_PATH%\MSBuild.exe" ngrok-helper/ngrok-helper.vcxproj /p:Platform=Win32 /p:Configuration=Release'
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
