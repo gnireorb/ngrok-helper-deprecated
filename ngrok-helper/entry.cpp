@@ -219,7 +219,6 @@ int main( int, char** )
                     {
                         std::system( "taskkill /f /im ngrok.exe" );
                     }
-                    ImGui::ColorEdit3( "color", color );
                 }
 
                 ImGui::Separator( );
