@@ -30,7 +30,7 @@ inline bool init( )
 
 	if ( !file_exists( "ngrok.exe" ) )
 	{
-		MessageBox( NULL, "ngrok.exe é inexistente, baixe-o em 'ngrok.com'.", "erro", MB_ICONERROR );
+		MessageBox( NULL, "ngrok.exe Ã© inexistente, baixe-o em 'ngrok.com'.", "erro", MB_ICONERROR );
 		exit( -1 );
 	}
 
@@ -107,33 +107,23 @@ inline bool create_tunnel( int port, int region )
 	{
 	case 0:
 		commandline = "ngrok tcp " + std::to_string( port ) + " --region sa";
-		if ( WinExec( commandline.c_str( ), SW_HIDE ) >= 31 )
-			std::this_thread::sleep_for( std::chrono::milliseconds( 500 ) );
-		get_public_url( );
+		WinExec( commandline.c_str( ), SW_HIDE );
 		break;
 	case 1:
 		commandline = "ngrok tcp " + std::to_string( port ) + " --region us";
-		if ( WinExec( commandline.c_str( ), SW_HIDE ) >= 31 )
-			std::this_thread::sleep_for( std::chrono::milliseconds( 500 ) );
-		get_public_url( );
+		WinExec( commandline.c_str( ), SW_HIDE );
 		break;
 	case 2:
 		commandline = "ngrok tcp " + std::to_string( port ) + " --region eu";
-		if ( WinExec( commandline.c_str( ), SW_HIDE ) >= 31 )
-			std::this_thread::sleep_for( std::chrono::milliseconds( 500 ) );
-		get_public_url( );
+		WinExec( commandline.c_str( ), SW_HIDE );
 		break;
 	case 3:
 		commandline = "ngrok tcp " + std::to_string( port ) + " --region ap";
-		if ( WinExec( commandline.c_str( ), SW_HIDE ) >= 31 )
-			std::this_thread::sleep_for( std::chrono::milliseconds( 500 ) );
-		get_public_url( );
+		WinExec( commandline.c_str( ), SW_HIDE );
 		break;
 	case 4:
 		commandline = "ngrok tcp " + std::to_string( port ) + " --region au";
-		if ( WinExec( commandline.c_str( ), SW_HIDE ) >= 31 )
-			std::this_thread::sleep_for( std::chrono::milliseconds( 500 ) );
-		get_public_url( );
+		WinExec( commandline.c_str( ), SW_HIDE );
 		break;
 	}
 
