@@ -167,8 +167,7 @@ int main( int, char** )
                 ImGui::PopItemWidth( );
                 if ( ImGui::Button( "create a tunnel" ) )
                 {
-                    if ( create_tunnel( settings::port, settings::region ))
-                        get_public_url( );
+                    create_tunnel( settings::port, settings::region );
                 }
                 ImGui::SameLine( );
                 if ( ImGui::Button( "close tunnel" ) )
@@ -213,11 +212,6 @@ int main( int, char** )
                     if ( ImGui::Button( "console window" ) )
                     {
                         if ( !debug_mode ) { ::ShowWindow( ::GetConsoleWindow( ), SW_SHOW ); debug_mode = true; } else { ::ShowWindow( ::GetConsoleWindow( ), SW_HIDE ); debug_mode = false; }
-                    }
-                    ImGui::SameLine( );
-                    if ( ImGui::Button( "taskkill ngrok.exe" ) )
-                    {
-                        std::system( "taskkill /f /im ngrok.exe" );
                     }
                 }
 
