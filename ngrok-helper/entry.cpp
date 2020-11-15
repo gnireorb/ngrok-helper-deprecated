@@ -209,9 +209,9 @@ int main( int, char** )
                 ImGui::Separator( );
                 if ( ImGui::CollapsingHeader( "debug stuff" ) )
                 {
-                    if ( ImGui::Button( "console window" ) )
+                    if ( ImGui::Checkbox( "debug mode", &debug_mode ) )
                     {
-                        if ( !debug_mode ) { ::ShowWindow( ::GetConsoleWindow( ), SW_SHOW ); debug_mode = true; } else { ::ShowWindow( ::GetConsoleWindow( ), SW_HIDE ); debug_mode = false; }
+                        ::ShowWindow( ::GetConsoleWindow( ), debug_mode ? SW_SHOW : SW_HIDE );
                     }
                 }
 
@@ -267,9 +267,9 @@ void imgui_easy_theming( ImVec3 color_for_text, ImVec3 color_for_head, ImVec3 co
     style.Colors[ ImGuiCol_ScrollbarGrab ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 0.21f );
     style.Colors[ ImGuiCol_ScrollbarGrabHovered ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 0.78f );
     style.Colors[ ImGuiCol_ScrollbarGrabActive ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 1.00f );
-    style.Colors[ ImGuiCol_CheckMark ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 0.80f );
-    style.Colors[ ImGuiCol_SliderGrab ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 0.50f );
-    style.Colors[ ImGuiCol_SliderGrabActive ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 1.00f );
+    style.Colors[ ImGuiCol_CheckMark ] = ImVec4( 1.f, 1.f, 1.f, 0.80f );
+    style.Colors[ ImGuiCol_SliderGrab ] = ImVec4( 1.f, 1.f, 1.f, 0.50f );
+    style.Colors[ ImGuiCol_SliderGrabActive ] = ImVec4( 1.f, 1.f, 1.f, 1.00f );
     style.Colors[ ImGuiCol_Button ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 0.50f );
     style.Colors[ ImGuiCol_ButtonHovered ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 0.86f );
     style.Colors[ ImGuiCol_ButtonActive ] = ImVec4( color_for_head.x, color_for_head.y, color_for_head.z, 1.00f );
