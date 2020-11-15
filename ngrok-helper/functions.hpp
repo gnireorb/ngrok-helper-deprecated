@@ -28,13 +28,11 @@ inline bool init( )
 {
 	SetConsoleTitle( ( "ngrok" ) );
 
-	/*
 	if ( !file_exists( "ngrok.exe" ) )
 	{
 		MessageBox( NULL, "O arquivo 'ngrok.exe' eh inexistente, baixe-o em 'ngrok.com'.", "Error", MB_ICONERROR );
 		exit( -1 );
 	}
-	*/
 
 	if ( !file_exists( "settings.json" ) )
 	{
