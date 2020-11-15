@@ -1,6 +1,6 @@
 <h1 align="center">ngrok helper</h1>
 <div align="center">
-    <a href="https://github.com/gnireorb/ngrok-helper/releases/"><img src="https://img.shields.io/github/release/gnireorb/ngrok-helper.svg?style=flat" alt="latest release" /></a>
+    <a href="https://github.com/gnireorb/ngrok-helper/releases/"><img src="https://img.shields.io/github/downloads/gnireorb/ngrok-helper/latest/total" alt="latest release" /></a>
     <a href="https://github.com/gnireorb/ngrok-helper/releases/"><img src="https://img.shields.io/github/downloads/gnireorb/ngrok-helper/total" /></a>
     <a href="https://github.com/gnireorb/ngrok-helper/blob/master/LICENSE"><img src="https://img.shields.io/github/license/gnireorb/ngrok-helper" /></a>
     <a href="https://github.com/Gnireorb/ngrok-helper/actions?query=workflow=build"><img src="https://img.shields.io/github/workflow/status/gnireorb/ngrok-helper/build" /></a>
@@ -16,9 +16,6 @@
 - Baixe o **ngrok-helper.exe**, coloque em uma pasta.
 - Na mesma pasta, baixe o [ngrok](https://ngrok.com/) e abra o **ngrok-helper.exe**.
 - O resto é com você, tudo esta disponivel no [ngrok](https://ngrok.com/).
-
-# Suporte
-- Todo o suporte é direcionado ao [GitHub](https://github.com/gnireorb/ngrok-helper/issues), e todos os downloads também são direcionados no [GitHub](https://github.com/gnireorb/ngrok-helper/releases).
 
 # Erros ou bugs
 - [GitHub](https://github.com/gnireorb/ngrok-helper/issues).
