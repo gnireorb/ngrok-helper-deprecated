@@ -1,8 +1,8 @@
 <h1 align="center">ngrok helper</h1>
 <div align="center">
+    <a href="https://github.com/Gnireorb/ngrok-helper/actions?query=workflow=build"><img src="https://img.shields.io/github/workflow/status/gnireorb/ngrok-helper/build" /></a>
     <a href="https://github.com/gnireorb/ngrok-helper/releases/"><img src="https://img.shields.io/github/downloads/gnireorb/ngrok-helper/latest/total" /></a>
     <a href="https://github.com/gnireorb/ngrok-helper/blob/master/LICENSE"><img src="https://img.shields.io/github/license/gnireorb/ngrok-helper" /></a>
-    <a href="https://github.com/Gnireorb/ngrok-helper/actions?query=workflow=build"><img src="https://img.shields.io/github/workflow/status/gnireorb/ngrok-helper/build" /></a>
 </div>
 
 # Downloads
