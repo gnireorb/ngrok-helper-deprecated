@@ -28,26 +28,47 @@ inline bool init( )
 {
 	SetConsoleTitle( ( "ngrok" ) );
 
+	/*
 	if ( !file_exists( "ngrok.exe" ) )
 	{
-		MessageBox( NULL, "ngrok.exe é inexistente, baixe-o em 'ngrok.com'.", "erro", MB_ICONERROR );
+		MessageBox( NULL, "O arquivo 'ngrok.exe' eh inexistente, baixe-o em 'ngrok.com'.", "Error", MB_ICONERROR );
 		exit( -1 );
 	}
+	*/
 
 	if ( !file_exists( "settings.json" ) )
 	{
 		if ( !create_file( "settings.json" ) )
+		{
+			MessageBox( NULL, "Ocorreu uma falha ao criar o arquivo 'settings.json'.", "Error", MB_ICONERROR );
 			return false;
+		}
+
+		if ( !file_exists( "settings.json" ) )
+		{
+			MessageBox( NULL, "O arquivo 'settings.json' eh inexistente.", "Error", MB_ICONERROR );
+			return false;
+		}
 
 		if ( !write_to_file( "settings.json", "{\"version\":\"0.4\",\"last_port\":0,\"ngrok_region\":0}" ) )
+		{
+			MessageBox( NULL, "Ocorreu uma falha ao escrever em 'settings.json'.", "Error", MB_ICONERROR );
 			return false;
+		}
 
 		if ( !load_settings( ) )
+		{
+			MessageBox( NULL, "Ocorreu uma falha ao ler 'settings.json'.", "Error", MB_ICONERROR );
 			return false;
+		}
+
 	}
 
 	if ( !load_settings( ) )
+	{
+		MessageBox( NULL, "Ocorreu uma falha ao ler 'settings.json'.", "Error", MB_ICONERROR );
 		return false;
+	}
 
 	return true;
 }
@@ -88,7 +109,7 @@ inline const char* read_file( const char* file_name )
 	file.open( file_name, std::ios::in );
 	if ( !file.is_open( ) )
 	{
-		MessageBox( NULL, "ocorreu uma falha ao abrir 'settings.json'.", "erro", MB_ICONERROR );
+		MessageBox( NULL, "Ocorreu uma falha ao abrir 'settings.json'.", "Error", MB_ICONERROR );
 		exit( -1 );
 	}
 	std::getline( file, output );
@@ -141,7 +162,7 @@ inline bool get_public_url( )
 	}
 	catch ( const std::exception& e )
 	{
-		std::cerr << "request failed, error: " << e.what( ) << '\n';
+		MessageBox( NULL, e.what( ), "Error", MB_ICONERROR );
 	}
 	const char* json = api_request.c_str( );
 	Document d;

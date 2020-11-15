@@ -1,7 +1,7 @@
 #include "../dependencies/imgui/imgui.h"
 #include "../dependencies/imgui/imgui_impl_glfw.h"
 #include "../dependencies/imgui/imgui_impl_opengl3.h"
-#include "../dependencies/imgui/font_rubik.hpp"
+#include "../dependencies/imgui/imgui_rubik.hpp"
 #include "../dependencies/rapidjson/document.h"
 #include "../dependencies/rapidjson/stringbuffer.h"
 #include "../dependencies/rapidjson/writer.h"
@@ -126,7 +126,7 @@ int main( int, char** )
     ImGui_ImplGlfw_InitForOpenGL( window, true );
     ImGui_ImplOpenGL3_Init( glsl_version );
 
-    ImFont* font = ImGui::GetIO( ).Fonts->AddFontFromMemoryTTF( const_cast<std::uint8_t*>( font_rubik ), sizeof( font_rubik ), 20.f, NULL );
+    ImFont* font = ImGui::GetIO( ).Fonts->AddFontFromMemoryTTF( const_cast<std::uint8_t*>( rubik ), sizeof( rubik ), 20.f, NULL );
     IM_ASSERT( font != NULL );
 
     ImVec4 clear_color = ImVec4( 0.039f, 0.066f, 0.105f, 1.00f );
