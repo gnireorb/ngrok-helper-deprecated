@@ -1,5 +1,5 @@
 #pragma once
-#include "imgui_rubik.hpp"
+#include "imgui_rubik.h"
 
 const std::uint8_t rubik[140732]
 {

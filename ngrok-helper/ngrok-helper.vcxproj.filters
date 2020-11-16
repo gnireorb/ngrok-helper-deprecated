@@ -57,16 +57,16 @@
     <ClCompile Include="..\dependencies\imgui\imgui_rubik.cpp">
       <Filter>Resource Files\font</Filter>
     </ClCompile>
+    <ClCompile Include="ngrok.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="functions.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="HTTPRequest.hpp">
       <Filter>Resource Files\HTTPRequest</Filter>
-    </ClInclude>
-    <ClInclude Include="settings.hpp">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\dependencies\imgui\imconfig.h">
       <Filter>Resource Files\imgui</Filter>
@@ -155,8 +155,17 @@
     <ClInclude Include="..\dependencies\libs\gl3w\GL\glcorearb.h">
       <Filter>Resource Files\gl3w</Filter>
     </ClInclude>
-    <ClInclude Include="..\dependencies\imgui\imgui_rubik.hpp">
+    <ClInclude Include="ngrok.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="settings.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\imgui\imgui_rubik.h">
       <Filter>Resource Files\font</Filter>
+    </ClInclude>
+    <ClInclude Include="util.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

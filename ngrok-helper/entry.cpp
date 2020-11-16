@@ -1,14 +1,18 @@
+#include <stdio.h>
+
 #include "../dependencies/imgui/imgui.h"
 #include "../dependencies/imgui/imgui_impl_glfw.h"
 #include "../dependencies/imgui/imgui_impl_opengl3.h"
-#include "../dependencies/imgui/imgui_rubik.hpp"
+#include "../dependencies/imgui/imgui_rubik.h"
 #include "../dependencies/rapidjson/document.h"
 #include "../dependencies/rapidjson/stringbuffer.h"
 #include "../dependencies/rapidjson/writer.h"
-#include "../dependencies/rapidjson/document.h"
+
+#include "ngrok.hpp"
+#include "util.hpp"
 #include "settings.hpp"
-#include "functions.hpp"
-#include <stdio.h>
+
+using namespace rapidjson;
 
 void SetupImGuiStyle2( );
 
@@ -62,7 +66,7 @@ BOOL WINAPI CtrlHandler( DWORD fdwCtrlType )
 int main( int, char** )
 {
     /* init */
-    init( );
+    ngrok::init( );
     SetConsoleCtrlHandler( CtrlHandler, TRUE );
     ::ShowWindow( ::GetConsoleWindow( ), SW_HIDE );
 
@@ -140,8 +144,9 @@ int main( int, char** )
         ImGui_ImplGlfw_NewFrame( );
         ImGui::NewFrame( );
 
+        static std::string ip = "tunel inexistente.";
         static bool debug_mode = false;
-        static char buf[ 32 ];
+        static char buf[ 48 ];
         static float color[ 4 ] = { 0.046f, 0.108f, 0.157f, 0.5f };
 
         {
@@ -156,34 +161,34 @@ int main( int, char** )
                 if ( ImGui::InputInt( "port", &settings::port ) )
                 {
                     Document doc;
-                    doc.Parse( read_file( "settings.json" ) );
+                    doc.Parse( ngrok::read_file( "settings.json" ) );
                     Value& var = doc[ "last_port" ];
                     var.SetInt( settings::port );
                     StringBuffer buffer;
                     Writer<StringBuffer> writer( buffer );
                     doc.Accept( writer );
-                    write_to_file( "settings.json", buffer.GetString( ) );
+                    ngrok::write_to_file( "settings.json", buffer.GetString( ) );
                 }
                 ImGui::PopItemWidth( );
                 if ( ImGui::Button( "create a tunnel" ) )
                 {
-                    create_tunnel( settings::port, settings::region );
+                    ngrok::create_tunnel( settings::port, settings::region );
                 }
                 ImGui::SameLine( );
                 if ( ImGui::Button( "close tunnel" ) )
                 {
                     std::system( "taskkill /f /im ngrok.exe" );
                 }
-                ImGui::InputText( "IP", (char*)settings::ip_address, IM_ARRAYSIZE( buf ) );
+                ImGui::InputText( "IP", (char*)ip.c_str(), IM_ARRAYSIZE( buf ) );
                 if ( ImGui::Button( "get IP" ) )
                 {
-                    get_public_url( );
+                    ip = ngrok::get_public_url( ).c_str( );
                 }
                 ImGui::SameLine( );
                 if ( ImGui::Button( "copy IP" ) )
                 {
                     HWND hwnd = GetDesktopWindow( );
-                    to_clipboard( hwnd, settings::ip_address );
+                    util::to_clipboard( hwnd, ngrok::get_public_url( ) );
                 }
                 ImGui::Separator( );
                 ImGui::Text( "authtoken" );
@@ -198,13 +203,13 @@ int main( int, char** )
                 if ( ImGui::Combo( "tunnel region", &settings::region, settings::regions, sizeof( settings::regions ) / sizeof( *settings::regions ) ) )
                 {
                     Document doc;
-                    doc.Parse( read_file( "settings.json" ) );
+                    doc.Parse( ngrok::read_file( "settings.json" ) );
                     Value& var = doc[ "ngrok_region" ];
                     var.SetInt( settings::region );
                     StringBuffer buffer;
                     Writer<StringBuffer> writer( buffer );
                     doc.Accept( writer );
-                    write_to_file( "settings.json", buffer.GetString( ) );
+                    ngrok::write_to_file( "settings.json", buffer.GetString( ) );
                 }
                 ImGui::Separator( );
                 if ( ImGui::CollapsingHeader( "debug stuff" ) )

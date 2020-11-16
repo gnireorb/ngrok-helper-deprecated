@@ -1,9 +1,8 @@
-#pragma once
 #include "../dependencies/HTTPRequest/HTTPRequest.hpp"
 #include "../dependencies/rapidjson/document.h"
 #include "../dependencies/rapidjson/stringbuffer.h"
 #include "../dependencies/rapidjson/writer.h"
-#include "../dependencies/rapidjson/document.h"
+
 #include <Windows.h>
 #include <string>
 #include <iostream>
@@ -12,29 +11,22 @@
 #include <tchar.h>
 #include <future>
 
+#include "settings.hpp"
+#include "ngrok.hpp"
+#include "util.hpp"
+
 using namespace rapidjson;
 
-inline bool init( );
-inline bool get_public_url( );
-inline bool load_settings( );
-inline bool create_file( const char* file_name );
-inline bool write_to_file( const char* file_name, const char* json );
-inline bool create_tunnel( int port, int region );
-inline bool file_exists( const std::string& file_name );
-inline void to_clipboard( HWND hwnd, const std::string& s );
-inline const char* read_file( const char* file_name );
-
-inline bool init( )
+bool ngrok::init( )
 {
-	SetConsoleTitle( ( "ngrok" ) );
 
-	if ( !file_exists( "ngrok.exe" ) )
+	if ( !util::file_exists( "ngrok.exe" ) )
 	{
 		MessageBox( NULL, "O arquivo 'ngrok.exe' eh inexistente, baixe-o em 'ngrok.com'.", "Error", MB_ICONERROR );
 		exit( -1 );
 	}
 
-	if ( !file_exists( "settings.json" ) )
+	if ( !util::file_exists( "settings.json" ) )
 	{
 		if ( !create_file( "settings.json" ) )
 		{
@@ -42,7 +34,7 @@ inline bool init( )
 			return false;
 		}
 
-		if ( !file_exists( "settings.json" ) )
+		if ( !util::file_exists( "settings.json" ) )
 		{
 			MessageBox( NULL, "O arquivo 'settings.json' eh inexistente.", "Error", MB_ICONERROR );
 			return false;
@@ -59,7 +51,6 @@ inline bool init( )
 			MessageBox( NULL, "Ocorreu uma falha ao ler 'settings.json'.", "Error", MB_ICONERROR );
 			return false;
 		}
-
 	}
 
 	if ( !load_settings( ) )
@@ -71,27 +62,27 @@ inline bool init( )
 	return true;
 }
 
-inline bool load_settings( )
+inline bool ngrok::load_settings( )
 {
 	Document doc;
 	doc.Parse( read_file( "settings.json" ) );
 
-	std::cout << "[version]: " << doc[ "version" ].GetString( ) << std::endl;
-
 	settings::region = doc[ "ngrok_region" ].GetInt( );
+	std::cout << "[region]: " << doc[ "ngrok_region" ].GetInt( ) << std::endl;
 	settings::port = doc[ "last_port" ].GetInt( );
+	std::cout << "[port]: " << doc[ "last_port" ].GetInt( ) << std::endl << std::endl;
 
 	return true;
 }
 
-inline bool create_file( const char* file_name )
+bool ngrok::create_file( const char* file_name )
 {
 	std::ofstream file( file_name, std::ios::out | std::ios::trunc );
 	file.close( );
 	return file.good( );
 }
 
-inline bool write_to_file( const char* file_name, const char* json )
+bool ngrok::write_to_file( const char* file_name, const char* json )
 {
 	std::ofstream file( file_name, std::ios::out | std::ios::trunc );
 	std::string str = json;
@@ -100,7 +91,7 @@ inline bool write_to_file( const char* file_name, const char* json )
 	return true;
 }
 
-inline const char* read_file( const char* file_name )
+const char* ngrok::read_file( const char* file_name )
 {
 	std::string output;
 	std::ifstream file;
@@ -109,13 +100,13 @@ inline const char* read_file( const char* file_name )
 	{
 		MessageBox( NULL, "Ocorreu uma falha ao abrir 'settings.json'.", "Error", MB_ICONERROR );
 		exit( -1 );
-	}
+	}	
 	std::getline( file, output );
 	file.close( );
 	return output.c_str( );
 }
 
-inline bool create_tunnel( int port, int region )
+bool ngrok::create_tunnel( int port, int region )
 {
 	std::string commandline;
 
@@ -149,7 +140,7 @@ inline bool create_tunnel( int port, int region )
 	return true;
 }
 
-inline bool get_public_url( )
+std::string ngrok::get_public_url( )
 {
 	std::string api_request;
 	try
@@ -171,30 +162,6 @@ inline bool get_public_url( )
 		std::string public_url = tunnel_url[ "public_url" ].GetString( );
 		public_url.erase( 0, 6 );
 
-		settings::ip_address = public_url.c_str( );
+		return public_url;
 	}
-
-	return true;
-}
-
-/* https://www.cplusplus.com/forum/general/48837/#msg266980 */
-inline void to_clipboard( HWND hwnd, const std::string& s ) {
-	OpenClipboard( hwnd );
-	EmptyClipboard( );
-	HGLOBAL hg = GlobalAlloc( GMEM_MOVEABLE, s.size( ) + 1 );
-	if ( !hg )
-	{
-		CloseClipboard( );
-		return;
-	}
-	memcpy( GlobalLock( hg ), s.c_str( ), s.size( ) + 1 );
-	GlobalUnlock( hg );
-	SetClipboardData( CF_TEXT, hg );
-	CloseClipboard( );
-	GlobalFree( hg );
-}
-
-inline bool file_exists( const std::string& file_name ) {
-	struct stat buffer;
-	return ( stat( file_name.c_str( ), &buffer ) == 0 );
 }

@@ -97,6 +97,8 @@
     <ClCompile Include="..\dependencies\imgui\imgui_widgets.cpp" />
     <ClCompile Include="..\dependencies\libs\gl3w\GL\gl3w.c" />
     <ClCompile Include="entry.cpp" />
+    <ClCompile Include="ngrok.cpp" />
+    <ClCompile Include="util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\dependencies\imgui\imconfig.h" />
@@ -104,7 +106,7 @@
     <ClInclude Include="..\dependencies\imgui\imgui_impl_glfw.h" />
     <ClInclude Include="..\dependencies\imgui\imgui_impl_opengl3.h" />
     <ClInclude Include="..\dependencies\imgui\imgui_internal.h" />
-    <ClInclude Include="..\dependencies\imgui\imgui_rubik.hpp" />
+    <ClInclude Include="..\dependencies\imgui\imgui_rubik.h" />
     <ClInclude Include="..\dependencies\imgui\imstb_rectpack.h" />
     <ClInclude Include="..\dependencies\imgui\imstb_textedit.h" />
     <ClInclude Include="..\dependencies\imgui\imstb_truetype.h" />
@@ -129,9 +131,10 @@
     <ClInclude Include="..\dependencies\rapidjson\stream.h" />
     <ClInclude Include="..\dependencies\rapidjson\stringbuffer.h" />
     <ClInclude Include="..\dependencies\rapidjson\writer.h" />
-    <ClInclude Include="functions.hpp" />
     <ClInclude Include="HTTPRequest.hpp" />
+    <ClInclude Include="ngrok.hpp" />
     <ClInclude Include="settings.hpp" />
+    <ClInclude Include="util.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
