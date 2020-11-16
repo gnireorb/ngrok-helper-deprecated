@@ -2,9 +2,16 @@
 # Created by https://www.toptal.com/developers/gitignore/api/c++,visualstudio
 # Edit at https://www.toptal.com/developers/gitignore?templates=c++,visualstudio
 
+
 ### C++ ###
 # Prerequisites
 *.d
+
+# Dear ImGui artifacts
+imgui.ini
+
+# Settings artifacts
+settings.json
 
 # Compiled Object files
 *.slo
