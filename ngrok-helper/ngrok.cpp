@@ -44,32 +44,7 @@ bool ngrok::init( )
 			MessageBox( NULL, "Ocorreu uma falha ao escrever em 'settings.json'.", "Error", MB_ICONERROR );
 			return false;
 		}
-
-		if ( !load_ngrok_settings( ) )
-		{
-			MessageBox( NULL, "Ocorreu uma falha ao ler 'settings.json'.", "Error", MB_ICONERROR );
-			return false;
-		}
 	}
-
-	if ( !load_ngrok_settings( ) )
-	{
-		MessageBox( NULL, "Ocorreu uma falha ao ler 'settings.json'.", "Error", MB_ICONERROR );
-		return false;
-	}
-
-	return true;
-}
-
-bool ngrok::load_ngrok_settings( )
-{
-	Document doc;
-	doc.Parse( util::read_file( "settings.json" ).c_str() );
-
-	settings::region = doc[ "ngrok_region" ].GetInt( );
-	std::cout << "[region]: " << doc[ "ngrok_region" ].GetInt( ) << std::endl;
-	settings::port = doc[ "last_port" ].GetInt( );
-	std::cout << "[port]: " << doc[ "last_port" ].GetInt( ) << std::endl << std::endl;
 
 	return true;
 }
