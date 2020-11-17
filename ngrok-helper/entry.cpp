@@ -64,10 +64,22 @@ BOOL WINAPI CtrlHandler( DWORD fdwCtrlType )
     }
 }
 
+static void load_ngrok_settings_properly( )
+{
+    Document doc;
+    doc.Parse( util::read_file( "settings.json" ).c_str( ) );
+
+    settings::region = doc[ "ngrok_region" ].GetInt( );
+    std::cout << "[region]: " << doc[ "ngrok_region" ].GetInt( ) << std::endl;
+    settings::port = doc[ "last_port" ].GetInt( );
+    std::cout << "[port]: " << doc[ "last_port" ].GetInt( ) << std::endl << std::endl;
+}
+
 int main( int, char** )
 {
     /* init */
     ngrok::init( );
+    load_ngrok_settings_properly( );
     SetConsoleCtrlHandler( CtrlHandler, TRUE );
     ::ShowWindow( ::GetConsoleWindow( ), SW_HIDE );
 
