@@ -36,10 +36,10 @@ std::string util::read_file( std::string file_name )
 	return output;
 }
 
-bool util::file_exists( const char* string )
+bool util::file_exists( std::string string )
 {
 	struct stat buffer;
-	return ( stat( string, &buffer ) == 0 );
+	return ( stat( string.c_str(), &buffer ) == 0 );
 }
 
 void util::to_clipboard( HWND hwnd, const std::string& s )

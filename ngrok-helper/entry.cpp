@@ -162,13 +162,13 @@ int main( int, char** )
                 if ( ImGui::InputInt( "port", &settings::port ) )
                 {
                     Document doc;
-                    doc.Parse( ngrok::read_file( "settings.json" ) );
+                    doc.Parse( util::read_file( "settings.json" ).c_str() );
                     Value& var = doc[ "last_port" ];
                     var.SetInt( settings::port );
                     StringBuffer buffer;
                     Writer<StringBuffer> writer( buffer );
                     doc.Accept( writer );
-                    ngrok::write_to_file( "settings.json", buffer.GetString( ) );
+                    util::write_to_file( "settings.json", buffer.GetString( ) );
                 }
                 ImGui::PopItemWidth( );
                 if ( ImGui::Button( "create a tunnel" ) )
@@ -204,13 +204,13 @@ int main( int, char** )
                 if ( ImGui::Combo( "tunnel region", &settings::region, settings::regions, sizeof( settings::regions ) / sizeof( *settings::regions ) ) )
                 {
                     Document doc;
-                    doc.Parse( ngrok::read_file( "settings.json" ) );
+                    doc.Parse( util::read_file( "settings.json" ).c_str() );
                     Value& var = doc[ "ngrok_region" ];
                     var.SetInt( settings::region );
                     StringBuffer buffer;
                     Writer<StringBuffer> writer( buffer );
                     doc.Accept( writer );
-                    ngrok::write_to_file( "settings.json", buffer.GetString( ) );
+                    util::write_to_file( "settings.json", buffer.GetString( ) );
                 }
                 ImGui::Separator( );
                 if ( ImGui::CollapsingHeader( "debug stuff" ) )
