@@ -4,6 +4,7 @@
 #include "../dependencies/imgui/imgui_impl_glfw.h"
 #include "../dependencies/imgui/imgui_impl_opengl3.h"
 #include "../dependencies/imgui/imgui_rubik.h"
+#include "../dependencies/imgui/imgui_stdlib.h"
 #include "../dependencies/rapidjson/document.h"
 #include "../dependencies/rapidjson/stringbuffer.h"
 #include "../dependencies/rapidjson/writer.h"
@@ -145,9 +146,9 @@ int main( int, char** )
         ImGui::NewFrame( );
 
         static std::string ip = "tunel inexistente.";
+        static std::string authtoken;
+
         static bool debug_mode = false;
-        static char buf[ 48 ];
-        static float color[ 4 ] = { 0.046f, 0.108f, 0.157f, 0.5f };
 
         {
             ImGui::SetNextWindowSize( ImVec2( 360, 656 ), ImGuiCond_FirstUseEver );
@@ -179,10 +180,10 @@ int main( int, char** )
                 {
                     std::system( "taskkill /f /im ngrok.exe" );
                 }
-                ImGui::InputText( "IP", (char*)ip.c_str(), IM_ARRAYSIZE( buf ) );
+                ImGui::InputText( "IP", &ip );
                 if ( ImGui::Button( "get IP" ) )
                 {
-                    ip = ngrok::get_public_url( ).c_str( );
+                    ip = ngrok::get_public_url( );
                 }
                 ImGui::SameLine( );
                 if ( ImGui::Button( "copy IP" ) )
@@ -192,10 +193,10 @@ int main( int, char** )
                 }
                 ImGui::Separator( );
                 ImGui::Text( "authtoken" );
-                ImGui::InputText( "authtoken", (char*)settings::authtoken, IM_ARRAYSIZE( settings::authtoken ) );
+                ImGui::InputText( "authtoken", &authtoken );
                 if ( ImGui::Button( "set ngrok authtoken" ) )
                 {
-                    std::string commandline = "ngrok authtoken " + ( std::string )settings::authtoken;
+                    std::string commandline = "ngrok authtoken " + authtoken;
                     std::system( commandline.c_str( ) );
                 }
                 ImGui::Separator( );
