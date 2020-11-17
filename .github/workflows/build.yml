@@ -18,12 +18,22 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build
+      - name: Build (Release)
         shell: cmd
         run: '"%MSBUILD_PATH%\MSBuild.exe" ngrok-helper/ngrok-helper.vcxproj /p:Platform=Win32 /p:Configuration=Release'
       
-      - name: Upload artifact
+      - name: Build (Debug)
+        shell: cmd
+        run: '"%MSBUILD_PATH%\MSBuild.exe" ngrok-helper/ngrok-helper.vcxproj /p:Platform=Win32 /p:Configuration=Debug'
+      
+      - name: Upload artifact (dist)
         uses: actions/upload-artifact@v1
         with:
           name: ngrok-helper
           path: ngrok-helper/Release/ngrok-helper.exe
+          
+      - name: Upload artifact (dev)
+        uses: actions/upload-artifact@v1
+        with:
+          name: ngrok-helper-dev
+          path: ngrok-helper/Debug/ngrok-helper.exe
