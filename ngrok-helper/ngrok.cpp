@@ -19,7 +19,6 @@ using namespace rapidjson;
 
 bool ngrok::init( )
 {
-
 	if ( !util::file_exists( "ngrok.exe" ) )
 	{
 		MessageBox( NULL, "O arquivo 'ngrok.exe' eh inexistente, baixe-o em 'ngrok.com'.", "Error", MB_ICONERROR );
@@ -28,7 +27,7 @@ bool ngrok::init( )
 
 	if ( !util::file_exists( "settings.json" ) )
 	{
-		if ( !create_file( "settings.json" ) )
+		if ( !util::create_file( "settings.json" ) )
 		{
 			MessageBox( NULL, "Ocorreu uma falha ao criar o arquivo 'settings.json'.", "Error", MB_ICONERROR );
 			return false;
@@ -40,20 +39,20 @@ bool ngrok::init( )
 			return false;
 		}
 
-		if ( !write_to_file( "settings.json", "{\"version\":\"0.4\",\"last_port\":0,\"ngrok_region\":0}" ) )
+		if ( !util::write_to_file( "settings.json", "{\"last_port\":0,\"ngrok_region\":0}" ) )
 		{
 			MessageBox( NULL, "Ocorreu uma falha ao escrever em 'settings.json'.", "Error", MB_ICONERROR );
 			return false;
 		}
 
-		if ( !load_settings( ) )
+		if ( !load_ngrok_settings( ) )
 		{
 			MessageBox( NULL, "Ocorreu uma falha ao ler 'settings.json'.", "Error", MB_ICONERROR );
 			return false;
 		}
 	}
 
-	if ( !load_settings( ) )
+	if ( !load_ngrok_settings( ) )
 	{
 		MessageBox( NULL, "Ocorreu uma falha ao ler 'settings.json'.", "Error", MB_ICONERROR );
 		return false;
@@ -62,10 +61,10 @@ bool ngrok::init( )
 	return true;
 }
 
-inline bool ngrok::load_settings( )
+bool ngrok::load_ngrok_settings( )
 {
 	Document doc;
-	doc.Parse( read_file( "settings.json" ) );
+	doc.Parse( util::read_file( "settings.json" ).c_str() );
 
 	settings::region = doc[ "ngrok_region" ].GetInt( );
 	std::cout << "[region]: " << doc[ "ngrok_region" ].GetInt( ) << std::endl;
@@ -73,37 +72,6 @@ inline bool ngrok::load_settings( )
 	std::cout << "[port]: " << doc[ "last_port" ].GetInt( ) << std::endl << std::endl;
 
 	return true;
-}
-
-bool ngrok::create_file( const char* file_name )
-{
-	std::ofstream file( file_name, std::ios::out | std::ios::trunc );
-	file.close( );
-	return file.good( );
-}
-
-bool ngrok::write_to_file( const char* file_name, const char* json )
-{
-	std::ofstream file( file_name, std::ios::out | std::ios::trunc );
-	std::string str = json;
-	file << str;
-	file.close( );
-	return true;
-}
-
-const char* ngrok::read_file( const char* file_name )
-{
-	std::string output;
-	std::ifstream file;
-	file.open( file_name, std::ios::in );
-	if ( !file.is_open( ) )
-	{
-		MessageBox( NULL, "Ocorreu uma falha ao abrir 'settings.json'.", "Error", MB_ICONERROR );
-		exit( -1 );
-	}	
-	std::getline( file, output );
-	file.close( );
-	return output.c_str( );
 }
 
 bool ngrok::create_tunnel( int port, int region )

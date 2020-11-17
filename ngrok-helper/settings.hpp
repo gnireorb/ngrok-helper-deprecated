@@ -3,7 +3,6 @@
 
 namespace settings
 {
-    static char authtoken[ 50 ];
     static int port;
     static int region = 0;
     const char* const regions[]
