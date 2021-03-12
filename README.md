@@ -14,15 +14,12 @@
 # Como usar:
 - Baixe o **ngrok-helper.exe**, coloque em uma pasta.
 - Na mesma pasta, baixe o [ngrok](https://ngrok.com/) e abra o **ngrok-helper.exe**.
-- O resto é com você, tudo esta disponivel no [ngrok](https://ngrok.com/).
-
-# Erros ou bugs
-- [GitHub](https://github.com/gnireorb/ngrok-helper/issues).
+- O resto é com você, tudo está disponivel em [ngrok](https://ngrok.com/).
 
 # Sobre
 - O único contribuidor desse projeto sou eu [@Gnireorb](https://github.com/gnireorb).
-- Você não é permitido de criar downloads externos.
-- Se quiser me contatar, me adicione no Discord **Broering#7096**.
+- Você não está permitido de criar **downloads externos**.
+- Se quiser me contatar, me adicione no Discord **Broering#7096** ou me contate por email <@broering@pm.me>.
 
 # Creditos
 - [HTTPRequest](https://github.com/elnormous/HTTPRequest)
