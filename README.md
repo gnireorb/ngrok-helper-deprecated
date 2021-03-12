@@ -19,7 +19,7 @@
 # Sobre
 - O único contribuidor desse projeto sou eu [@Gnireorb](https://github.com/gnireorb).
 - Você não está permitido de criar **downloads externos**.
-- Se quiser me contatar, me adicione no Discord **Broering#7096** ou me contate por email <@broering@pm.me>.
+- Se quiser me contatar, me adicione no Discord **Broering#7096** ou me contate por email <broering@pm.me>.
 
 # Creditos
 - [HTTPRequest](https://github.com/elnormous/HTTPRequest)
