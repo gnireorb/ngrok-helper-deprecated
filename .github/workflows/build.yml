@@ -20,13 +20,7 @@ jobs:
         run: '"%MSBUILD_PATH%\MSBuild.exe" ngrok-helper/ngrok-helper.vcxproj /p:Platform=Win32 /p:Configuration=Release'
       
       - name: Upload artifact (dist)
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: ngrok-helper
-          path: ngrok-helper/Release/ngrok-helper.exe
-          
-      - name: Upload artifact (dev)
-        uses: actions/upload-artifact@v1
-        with:
-          name: ngrok-helper-dev
           path: ngrok-helper/Release/ngrok-helper.exe
