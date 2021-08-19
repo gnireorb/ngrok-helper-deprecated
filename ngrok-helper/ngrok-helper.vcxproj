@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -11,31 +11,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{9368A599-7FCB-343E-2851-6DF4149300C1}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{3e504a7c-650b-4dae-a6a7-91193b0e39d0}</ProjectGuid>
     <RootNamespace>ngrok-helper</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>ngrok-helper</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
-  <ImportGroup Label="Shared">
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -46,97 +42,66 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(IncludePath)</IncludePath>
+    <OutDir>..\bin\Debug\</OutDir>
+    <IntDir>obj\Debug\</IntDir>
+    <TargetName>ngrok-helper</TargetName>
+    <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>..\dependencies\libs\glfw\include\GLFW;$(LibraryPath)</LibraryPath>
+    <OutDir>..\bin\Release\</OutDir>
+    <IntDir>obj\Release\</IntDir>
+    <TargetName>ngrok-helper</TargetName>
+    <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>
-      </SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..;..;..\dependencies\libs\glfw\include;..\dependencies\libs\gl3w</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\include\ImGui;..\include\ImGui\backends;..\include\rapidjson\include\rapidjson;..\include\HTTPRequest\include;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\dependencies\libs\glfw\lib-vc2010-32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\include\ImGui;..\include\ImGui\backends;..\include\rapidjson\include\rapidjson;..\include\HTTPRequest\include;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..;..;..\dependencies\libs\glfw\include;..\dependencies\libs\gl3w</AdditionalIncludeDirectories>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\dependencies\libs\glfw\lib-vc2010-32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\dependencies\imgui\imgui.cpp" />
-    <ClCompile Include="..\dependencies\imgui\imgui_demo.cpp" />
-    <ClCompile Include="..\dependencies\imgui\imgui_draw.cpp" />
-    <ClCompile Include="..\dependencies\imgui\imgui_impl_glfw.cpp" />
-    <ClCompile Include="..\dependencies\imgui\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="..\dependencies\imgui\imgui_rubik.cpp" />
-    <ClCompile Include="..\dependencies\imgui\imgui_stdlib.cpp" />
-    <ClCompile Include="..\dependencies\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="..\dependencies\libs\gl3w\GL\gl3w.c" />
-    <ClCompile Include="entry.cpp" />
-    <ClCompile Include="ngrok.cpp" />
-    <ClCompile Include="util.cpp" />
+    <ClInclude Include="src\common.hpp" />
+    <ClInclude Include="src\helpers\ngrok_helper.hpp" />
+    <ClInclude Include="src\util\util.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\dependencies\imgui\imconfig.h" />
-    <ClInclude Include="..\dependencies\imgui\imgui.h" />
-    <ClInclude Include="..\dependencies\imgui\imgui_impl_glfw.h" />
-    <ClInclude Include="..\dependencies\imgui\imgui_impl_opengl3.h" />
-    <ClInclude Include="..\dependencies\imgui\imgui_internal.h" />
-    <ClInclude Include="..\dependencies\imgui\imgui_rubik.h" />
-    <ClInclude Include="..\dependencies\imgui\imgui_stdlib.h" />
-    <ClInclude Include="..\dependencies\imgui\imstb_rectpack.h" />
-    <ClInclude Include="..\dependencies\imgui\imstb_textedit.h" />
-    <ClInclude Include="..\dependencies\imgui\imstb_truetype.h" />
-    <ClInclude Include="..\dependencies\libs\gl3w\GL\gl3w.h" />
-    <ClInclude Include="..\dependencies\libs\gl3w\GL\glcorearb.h" />
-    <ClInclude Include="..\dependencies\rapidjson\allocators.h" />
-    <ClInclude Include="..\dependencies\rapidjson\document.h" />
-    <ClInclude Include="..\dependencies\rapidjson\encodedstream.h" />
-    <ClInclude Include="..\dependencies\rapidjson\encodings.h" />
-    <ClInclude Include="..\dependencies\rapidjson\filereadstream.h" />
-    <ClInclude Include="..\dependencies\rapidjson\filewritestream.h" />
-    <ClInclude Include="..\dependencies\rapidjson\fwd.h" />
-    <ClInclude Include="..\dependencies\rapidjson\istreamwrapper.h" />
-    <ClInclude Include="..\dependencies\rapidjson\memorybuffer.h" />
-    <ClInclude Include="..\dependencies\rapidjson\memorystream.h" />
-    <ClInclude Include="..\dependencies\rapidjson\ostreamwrapper.h" />
-    <ClInclude Include="..\dependencies\rapidjson\pointer.h" />
-    <ClInclude Include="..\dependencies\rapidjson\prettywriter.h" />
-    <ClInclude Include="..\dependencies\rapidjson\rapidjson.h" />
-    <ClInclude Include="..\dependencies\rapidjson\reader.h" />
-    <ClInclude Include="..\dependencies\rapidjson\schema.h" />
-    <ClInclude Include="..\dependencies\rapidjson\stream.h" />
-    <ClInclude Include="..\dependencies\rapidjson\stringbuffer.h" />
-    <ClInclude Include="..\dependencies\rapidjson\writer.h" />
-    <ClInclude Include="HTTPRequest.hpp" />
-    <ClInclude Include="ngrok.hpp" />
-    <ClInclude Include="settings.hpp" />
-    <ClInclude Include="util.hpp" />
+    <ClCompile Include="src\helpers\ngrok_helper.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\util\util.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\include\ImGui\ImGui.vcxproj">
+      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

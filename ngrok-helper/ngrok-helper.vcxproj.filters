@@ -1,177 +1,29 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="helpers">
+      <UniqueIdentifier>{F8D0E23C-64B0-61D8-6DC8-ECAED926C839}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Resource Files\imgui">
-      <UniqueIdentifier>{c67a43b0-0716-4b4e-823f-fd66739603c3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\gl3w">
-      <UniqueIdentifier>{8e380b2d-961a-4ab0-b409-36b82db8d534}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\rapidjson">
-      <UniqueIdentifier>{0403f4dc-e077-4e7d-86d2-b2bd40f3257e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\HTTPRequest">
-      <UniqueIdentifier>{77c6a66e-bc0a-4c13-a450-acb1b610f52c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\font">
-      <UniqueIdentifier>{7f7e776c-812a-4b1e-9ef6-c13fa43ba79c}</UniqueIdentifier>
+    <Filter Include="util">
+      <UniqueIdentifier>{43339F7C-2F6A-A00D-D856-8610C46C1C0F}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="entry.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dependencies\imgui\imgui.cpp">
-      <Filter>Resource Files\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dependencies\imgui\imgui_demo.cpp">
-      <Filter>Resource Files\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dependencies\imgui\imgui_draw.cpp">
-      <Filter>Resource Files\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dependencies\imgui\imgui_impl_glfw.cpp">
-      <Filter>Resource Files\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dependencies\imgui\imgui_impl_opengl3.cpp">
-      <Filter>Resource Files\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dependencies\imgui\imgui_widgets.cpp">
-      <Filter>Resource Files\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dependencies\libs\gl3w\GL\gl3w.c">
-      <Filter>Resource Files\gl3w</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dependencies\imgui\imgui_rubik.cpp">
-      <Filter>Resource Files\font</Filter>
-    </ClCompile>
-    <ClCompile Include="ngrok.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="util.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dependencies\imgui\imgui_stdlib.cpp">
-      <Filter>Resource Files\imgui</Filter>
-    </ClCompile>
+    <ClInclude Include="src\common.hpp" />
+    <ClInclude Include="src\helpers\ngrok_helper.hpp">
+      <Filter>helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\util.hpp">
+      <Filter>util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HTTPRequest.hpp">
-      <Filter>Resource Files\HTTPRequest</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\imgui\imconfig.h">
-      <Filter>Resource Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\imgui\imgui.h">
-      <Filter>Resource Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\imgui\imgui_impl_glfw.h">
-      <Filter>Resource Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\imgui\imgui_impl_opengl3.h">
-      <Filter>Resource Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\imgui\imgui_internal.h">
-      <Filter>Resource Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\imgui\imstb_rectpack.h">
-      <Filter>Resource Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\imgui\imstb_textedit.h">
-      <Filter>Resource Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\imgui\imstb_truetype.h">
-      <Filter>Resource Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\rapidjson\allocators.h">
-      <Filter>Resource Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\rapidjson\document.h">
-      <Filter>Resource Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\rapidjson\encodedstream.h">
-      <Filter>Resource Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\rapidjson\encodings.h">
-      <Filter>Resource Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\rapidjson\filereadstream.h">
-      <Filter>Resource Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\rapidjson\filewritestream.h">
-      <Filter>Resource Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\rapidjson\fwd.h">
-      <Filter>Resource Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\rapidjson\istreamwrapper.h">
-      <Filter>Resource Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\rapidjson\memorybuffer.h">
-      <Filter>Resource Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\rapidjson\memorystream.h">
-      <Filter>Resource Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\rapidjson\ostreamwrapper.h">
-      <Filter>Resource Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\rapidjson\pointer.h">
-      <Filter>Resource Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\rapidjson\prettywriter.h">
-      <Filter>Resource Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\rapidjson\rapidjson.h">
-      <Filter>Resource Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\rapidjson\reader.h">
-      <Filter>Resource Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\rapidjson\schema.h">
-      <Filter>Resource Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\rapidjson\stream.h">
-      <Filter>Resource Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\rapidjson\stringbuffer.h">
-      <Filter>Resource Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\rapidjson\writer.h">
-      <Filter>Resource Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\libs\gl3w\GL\gl3w.h">
-      <Filter>Resource Files\gl3w</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\libs\gl3w\GL\glcorearb.h">
-      <Filter>Resource Files\gl3w</Filter>
-    </ClInclude>
-    <ClInclude Include="ngrok.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="settings.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\imgui\imgui_rubik.h">
-      <Filter>Resource Files\font</Filter>
-    </ClInclude>
-    <ClInclude Include="util.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\imgui\imgui_stdlib.h">
-      <Filter>Resource Files\imgui</Filter>
-    </ClInclude>
+    <ClCompile Include="src\helpers\ngrok_helper.cpp">
+      <Filter>helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\util\util.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

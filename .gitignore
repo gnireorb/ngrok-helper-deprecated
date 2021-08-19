@@ -2,16 +2,18 @@
 # Created by https://www.toptal.com/developers/gitignore/api/c++,visualstudio
 # Edit at https://www.toptal.com/developers/gitignore?templates=c++,visualstudio
 
+# Related
+/bin
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.ini
+*.json
 
 ### C++ ###
 # Prerequisites
 *.d
-
-# Dear ImGui artifacts
-imgui.ini
-
-# Settings artifacts
-settings.json
 
 # Compiled Object files
 *.slo
